@@ -19,9 +19,6 @@ module.exports = {
                 test: /\.html$/,
                 use: [ {
                     loader: 'html-loader',
-                    options: {
-                        minimize: true,
-                    },
                 }],
                 exclude: [/node_modules/, /src/],
             },
@@ -29,9 +26,13 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            inject: 'body',
             template: path.resolve(__dirname, './src/index.html'),
-            filename: path.resolve(__dirname, './dist/index.html')
+            filename: path.resolve(__dirname, './dist/index.html'),
+            inject: 'body', // Inject assets into the given / 'body' = all JS will be placed at the bottom of body elem.
+            minify: {
+                collapseWhitespace: true, // Collapse white space that contributes to text nodes in a document tree
+                removeComments: true,
+            },
         }),
     ]
 };

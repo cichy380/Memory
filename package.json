@@ -6,7 +6,7 @@
   "repository": "https://github.com/cichy380/Memory",
   "author": "Marcin Dobroszek <marcin.dobroszek@gmail.com>",
   "scripts": {
-    "build": "webpack --config webpack.config.js --mode=development"
+    "dev": "webpack --config webpack.config.js --mode=production"
   },
   "license": "MIT",
   "devDependencies": {
