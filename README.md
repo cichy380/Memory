@@ -1,7 +1,7 @@
 # Memory Game
 
-It is a card game designed for two people play against each other where you need to match pairs of tiles. 
-Observation, concentration and memory are key to success. It is very easy. Enjoy!
+It is a card game designed for two people play against each other. You need to match pairs of tiles. 
+Observation, concentration and memory are key to success, but... it is very easy. Enjoy!
 
 ###  --- under construction ---
 
