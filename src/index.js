@@ -5,6 +5,6 @@ import './scss/index.scss';
 new Vue({
     el: '#app',
     data: {
-        message: 'Vue!'
+        message: 'test-6.'
     }
 });

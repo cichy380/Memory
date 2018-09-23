@@ -51,6 +51,9 @@ Memory uses a number of open source projects to work properly:
 2. I recommend you installation to the latest version of [Yarn](https://yarnpkg.com/en/) globally.
 3. Clone the repo.
 4. From the command line run `yarn` (recommended) or `npm install`.
+5. For best developer environment install browsersync, webpack-cli and webpack-dev-server etc.:
+
+    `npm install --dev`
 
 ### Commands:
 

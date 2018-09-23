@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = function (env, argv) {
     let productionMode = argv.mode === 'production',
@@ -17,6 +18,11 @@ module.exports = function (env, argv) {
             }),
             new MiniCssExtractPlugin({
                 filename: 'styles.css'
+            }),
+            new BrowserSyncPlugin({
+                host: 'localhost',
+                port: 3000,
+                proxy: 'http://localhost:8080/'
             }),
         ];
 
