@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "webpack --config webpack.config.js --mode=development",
     "prod": "webpack --config webpack.config.js --mode=production",
+    "watch": "webpack --watch --config webpack.config.js --mode=development",
     "server": "webpack-dev-server",
     "start": "npm run dev && npm run server"
   },
