@@ -16,21 +16,16 @@
 
 <div id="app">
     <header>
-        <nav class="navbar navbar-light border-bottom shadow-sm">
+        <nav class="navbar navbar-light border-bottom">
             <div class="container">
                 <span class="navbar-brand">MEMORY.</span>
 
                 <ul class="navbar-nav">
-                    <li class="nav-item active d-none d-sm-none d-md-block">
-                        <a class="nav-btn btn btn-outline-primary" href="#">Start</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Scores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Rules
-                        </a>
+                        <a class="nav-link" href="#">Rules</a>
                     </li>
                 </ul>
             </div>
@@ -38,10 +33,8 @@
     </header>
 
     <main>
-
+        <div class="container"><p>Hello {{ message }}</p></div>
     </main>
-
-    <p>Hello {{ message }}</p>
 </div>
 </body>
 </html>
