@@ -600,6 +600,17 @@ $navbar-light-color:                $gray-800;
 $navbar-light-hover-color:          $navbar-light-color;
 $navbar-light-active-color:         $navbar-light-color;
 
+// Footer
+
+$footer-height:                     ($spacer * 2.5);
+$footer-font-size:                  $font-size-sm;
+$footer-color:                      $gray-700;
+
+// Content
+
+$content-padding-top:              ($spacer * 2.5);
+$content-padding-bottom:           ($spacer * 2.5);
+
 
 // Popovers
 

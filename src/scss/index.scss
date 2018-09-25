@@ -45,4 +45,9 @@
  * Memory, custom styles
  * Licensed under MIT
  */
+
+@import "common/reboot";
+
 @import "includes/navbar";
+@import "includes/content";
+@import "includes/footer";
