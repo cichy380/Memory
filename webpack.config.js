@@ -12,12 +12,12 @@ module.exports = function (env, argv) {
                 filename: 'index.html',
                 inject: 'body', // Inject assets into the given / 'body' = all JS will be placed at the bottom of body elem.
                 minify: {
-                    collapseWhitespace: true, // Collapse white space that contributes to text nodes in a document tree
-                    removeComments: true,
+                    collapseWhitespace: productionMode, // Collapse white space that contributes to text nodes in a document tree
+                    removeComments: productionMode,
                 },
             }),
             new MiniCssExtractPlugin({
-                filename: 'styles.css'
+                filename: 'css/styles.css'
             }),
             new BrowserSyncPlugin({
                 host: 'localhost',
@@ -32,7 +32,7 @@ module.exports = function (env, argv) {
         entry: path.resolve(__dirname, './src/index.js'),
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: 'app.js',
+            filename: 'js/app.js',
         },
         resolve: {
             alias: {
@@ -56,19 +56,33 @@ module.exports = function (env, argv) {
                         {
                             loader: 'css-loader', // translates CSS into CommonJS modules
                             options: {
-                                sourceMap: true,
+                                sourceMap: !productionMode,
                             }
                         },
                         {
                             loader: 'sass-loader', // compiles Sass to CSS
                             options: {
-                                sourceMap: true,
+                                sourceMap: !productionMode,
                             },
                         },
                     ],
                 },
-
-            ]
+                {
+                    test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                    exclude: /images/,
+                    use: [{
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/',
+                            publicPath: '../fonts/'
+                        }
+                    }]
+                },
+            ],
+            // resolve: {
+            //     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+            // },
         },
         devtool: productionMode ? 'eval' : 'source-map',
         plugins: plugins,
