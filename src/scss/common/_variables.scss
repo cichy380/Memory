@@ -192,9 +192,9 @@ $line-height-sm:              1.5;
 $border-width:                1px;
 $border-color:                $gray-400;
 
-$border-radius:               .25rem;
+$border-radius:               .15rem;
 $border-radius-lg:            .3rem;
-$border-radius-sm:            .2rem;
+$border-radius-sm:            .075rem;
 
 $box-shadow-sm:               0 .125rem .25rem rgba($black, .075);
 $box-shadow:                  0 .5rem 1rem rgba($black, .15);
@@ -242,7 +242,7 @@ $headings-margin-bottom:      ($spacer / 2);
 $headings-font-family:        inherit;
 $headings-font-weight:        500;
 $headings-line-height:        1.2;
-$headings-color:              inherit;
+$headings-color:              $success;
 
 $display1-size:               6rem;
 $display2-size:               5.5rem;
@@ -338,18 +338,18 @@ $input-btn-border-width:      $border-width;
 // For each of Bootstrap's buttons, define text, background, and border color.
 
 $btn-padding-y:               $input-btn-padding-y;
-$btn-padding-x:               $input-btn-padding-x;
+$btn-padding-x:               ($input-btn-padding-x * 2);
 $btn-line-height:             $input-btn-line-height;
 
 $btn-padding-y-sm:            $input-btn-padding-y-sm;
-$btn-padding-x-sm:            $input-btn-padding-x-sm;
+$btn-padding-x-sm:            ($input-btn-padding-x-sm * 2);
 $btn-line-height-sm:          $input-btn-line-height-sm;
 
 $btn-padding-y-lg:            $input-btn-padding-y-lg;
-$btn-padding-x-lg:            $input-btn-padding-x-lg;
+$btn-padding-x-lg:            ($input-btn-padding-x-lg * 2);
 $btn-line-height-lg:          $input-btn-line-height-lg;
 
-$btn-border-width:            $input-btn-border-width;
+$btn-border-width:            2px;
 
 $btn-font-weight:             $font-weight-normal;
 $btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075);
@@ -404,7 +404,7 @@ $input-focus-color:                     $input-color;
 $input-focus-width:                     $input-btn-focus-width;
 $input-focus-box-shadow:                $input-btn-focus-box-shadow;
 
-$input-placeholder-color:               $gray-600;
+$input-placeholder-color:               $gray-500;
 $input-plaintext-color:                 $body-color;
 
 $input-height-border:                   $input-border-width * 2;
