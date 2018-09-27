@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -24,6 +25,7 @@ module.exports = function (env, argv) {
                 port: 3000,
                 proxy: 'http://localhost:8080/'
             }),
+            new VueLoaderPlugin(),
         ];
 
     productionMode && plugins.push(new OptimizeCssAssetsPlugin());
@@ -42,11 +44,18 @@ module.exports = function (env, argv) {
         module: {
             rules: [
                 {
-                    test: /\.html$/,
+                    test: /\.(html)$/,
                     use: [{
                         loader: 'html-loader',
                     }],
                     exclude: [/node_modules/, /src/],
+                },
+                {
+                    test: /\.(vue)$/,
+                    use: [{
+                        loader: 'vue-loader',
+                    }],
+                    exclude: [/node_modules/],
                 },
                 {
                     test: /\.(scss)$/,
