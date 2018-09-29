@@ -27,6 +27,11 @@
   line-height: inherit;
   white-space: nowrap;
   font-weight: $navbar-brand-font-weight;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 
@@ -45,6 +50,11 @@
   .nav-link {
     padding-right: $navbar-nav-link-padding-x;
     padding-left: $navbar-nav-link-padding-x;
+    text-decoration: none;
+
+    &.active {
+      text-decoration: underline;
+    }
   }
 
   .nav-btn {
@@ -70,18 +80,6 @@
   .navbar-nav {
     .nav-link {
       color: $navbar-light-color;
-
-      @include hover-focus {
-        color: $navbar-light-hover-color;
-        text-decoration: underline;
-      }
-    }
-
-    .show > .nav-link,
-    .active > .nav-link,
-    .nav-link.show,
-    .nav-link.active {
-      color: $navbar-light-active-color;
     }
   }
 }

@@ -9,9 +9,9 @@ Observation, concentration and memory are key to success, but... it is very easy
 
 ### Rules 
  
- - Click "Play"
+ - Click "Start"
  - Insert names of two players
- - Click "Start" to mix up the cards and start the game
+ - Click "Play" to mix up the cards and start the game
  
  There are six unique pairs of cards, making 12 cards total. Cards are laid out in a grid. All cards are face down and players take turns flipping pairs of cards over.
   

@@ -1,2 +1,2 @@
-<template src="./template.html"></template>
-<script src="./script.js"></script>
+<template src="./rules.vue.html"></template>
+<script src="./rules.vue.js"></script>
