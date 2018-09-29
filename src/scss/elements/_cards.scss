@@ -47,8 +47,16 @@
   border-color: darken($card-bg, 5%);
 }
 
+.card-logo,
 .card-image {
-  font-size: 1000%;
+  font-size: 1200%;
+}
+
+.card-logo {
+  color: darken($card-bg, 5%);
+}
+
+.card-image {
   color: $white;
 }
 

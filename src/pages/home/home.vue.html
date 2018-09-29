@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-8">
+        <section class="intro">
+            <h2 class="intro-heading">Can you remember?</h2>
+            <p class="lead intro-lead">
+                It is old and popular a card game designed for two people play against each other.
+                You need to match pairs of tiles.
+                Observation, concentration and memory are key to success, but it is very easy.
+            </p>
+            <p class="intro-buttons"><a href="#" class="btn btn-lg btn-outline-primary">Start</a></p>
+            <p class="text-muted">
+                Still understand not much? Don't worry and read <a href="">the rules of game</a>.
+            </p>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section class="d-flex">
+            <div class="card card-theme-red ml-auto" @click="flip($event)">
+                <div class="card-flipper">
+                    <div class="card-reverse">
+                        <i class="card-logo fas fa-lightbulb"></i>
+                    </div>
+                    <div class="card-obverse">
+                        <i class="card-image fab fa-earlybirds"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

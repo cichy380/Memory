@@ -1,14 +1,14 @@
-import Home from './components/Home/home.vue';
-import Rules from './components/Rules/rules.vue';
+import home from './pages/home/home.vue';
+import rules from './pages/rules/rules.vue';
 
 const routes = [
     {
         path: '/',
-        component: Home
+        component: home
     },
     {
         path: '/rules',
-        component: Rules
+        component: rules
     },
     // {
     //     path: '*',
