@@ -1,6 +1,7 @@
 <section>
     <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3" v-for="(card, index) in cards">
+            <!-- todo: close inside vue component -->
             <div class="card" v-bind:class="'card-'+card.color" @click="flip(index)">
                 <div class="card-flipper" v-bind:class="{'card-flipper-flipped': card.isFlipped}">
                     <div class="card-reverse">

@@ -6,7 +6,7 @@ export default class Card {
         this.isFlipped = false;
     }
 
-    flip() {
-        this.isFlipped = true;
+    flip(flipState = true) {
+        this.isFlipped = flipState;
     }
 }

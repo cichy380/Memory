@@ -89,16 +89,16 @@
   font-size: 400%;
 
   @include media-breakpoint-up(sm) {
-    font-size: 700%;
-  }
-  @include media-breakpoint-up(md) {
-    font-size: 700%;
-  }
-  @include media-breakpoint-up(lg) {
     font-size: 600%;
   }
+  @include media-breakpoint-up(md) {
+    font-size: 600%;
+  }
+  @include media-breakpoint-up(lg) {
+    font-size: 500%;
+  }
   @include media-breakpoint-up(xl) {
-    font-size: 700%;
+    font-size: 600%;
   }
 }
 

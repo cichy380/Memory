@@ -1,5 +1,5 @@
 <div class="row align-items-center">
-    <div class="col-md-8">
+    <div class="col-lg-8">
         <section class="intro">
             <h2 class="intro-heading">The Memory <span class="d-none d-sm-inline">Game</span></h2>
             <p class="lead intro-lead">It is old and popular a card game designed for two people play against each
@@ -10,19 +10,19 @@
                 <router-link to="/game" class="btn btn-lg btn-outline-primary">Start</router-link>
             </p>
             <p class="text-muted">Still understand not much?
-                Don't worry and read <router-link to="/rules">the rules of game</router-link>.
+                <br class="d-inline d-sm-none" />Don't worry and read <router-link to="/rules">the rules of game</router-link>.
             </p>
         </section>
     </div>
-    <div class="col-md-4">
-        <section class="d-flex">
-            <div class="card card-lg card-red ml-auto">
-                <div class="card-flipper">
+    <div class="col-lg-4">
+        <section class="d-lg-flex d-none">
+            <div class="card card-lg ml-auto" v-bind:class="'card-'+card.color">
+                <div class="card-flipper" v-bind:class="{'card-flipper-flipped': card.isFlipped}">
                     <div class="card-reverse">
                         <i class="card-logo fas fa-lightbulb"></i>
                     </div>
                     <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
+                        <i class="card-image" v-html="card.icon"></i>
                     </div>
                 </div>
             </div>

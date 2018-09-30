@@ -1,5 +1,5 @@
-import config from './../../common/config';
 import Vue from 'vue';
+import config from './../../common/config';
 import Game from './../../common/Game';
 
 let cards = []; // list of all Card objects
@@ -7,7 +7,7 @@ let cards = []; // list of all Card objects
 export default Vue.extend({
     data() {
         return {
-            cards: []
+            cards: [],
         }
     },
 
