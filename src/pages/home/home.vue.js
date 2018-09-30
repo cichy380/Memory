@@ -15,6 +15,8 @@ export default Vue.extend({
 
     methods: {
         flip(event) {
+            console.log(event);
+
             let $card = event.target,
                 $cardFlipper = $card.getElementsByClassName('card-flipper')[0];
 
