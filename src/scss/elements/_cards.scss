@@ -82,6 +82,11 @@
   transform: rotateY(0deg); // for firefox 31
   background-color: $card-bg;
   border-color: darken($card-bg, 5%);
+  transition: opacity $card-flip-speed;
+
+  &.disable {
+    opacity: .5;
+  }
 }
 
 .card-logo,

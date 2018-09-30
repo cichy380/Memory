@@ -1,4 +1,6 @@
 export default Object.freeze({
+    cardNumbers: 12, // numbers of cards in game
+
     colors: [ // #RGB values defined in src/scss/common/_variables
         'blue',
         'purple',
@@ -8,6 +10,7 @@ export default Object.freeze({
         'green',
         'teal',
     ],
+
     icons: [ // source: https://fontawesome.com/icons?d=gallery&s=solid&m=free
         '<i class="fas fa-apple-alt"></i>',
         '<i class="fas fa-coffee"></i>',

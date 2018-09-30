@@ -1,10 +1,24 @@
-<section>
+<div class="game">
+    <div class="alert alert-info" v-if="gameOver">Game over</div>
+
+    <section class="game-players">
+        <ul>
+            <li v-for="(player, index) in players" v-bind:class="{'font-weight-bold':round.currenPlayer===index}">
+                {{player.name}} <span class="text-muted">(points: {{player.points}})</span>
+                <button class="btn btn-sm btn-outline-primary"
+                        @click="nextPlayer()"
+                        v-if="round.currenPlayer===index"
+                        :disabled="!playerChange">Next Player</button>
+            </li>
+        </ul>
+    </section>
+
     <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3" v-for="(card, index) in cards">
             <!-- todo: close inside vue component -->
-            <div class="card" v-bind:class="'card-'+card.color" @click="flip(index)">
+            <div v-bind:id="card.id" class="card" v-bind:class="'card-'+card.color" @click="flip(index)">
                 <div class="card-flipper" v-bind:class="{'card-flipper-flipped': card.isFlipped}">
-                    <div class="card-reverse">
+                    <div class="card-reverse" v-bind:class="{'disable':playerChange}">
                         <i class="card-logo fas fa-lightbulb"></i>
                     </div>
                     <div class="card-obverse">
@@ -14,4 +28,5 @@
             </div>
         </div>
     </div>
-</section>
+
+</div>

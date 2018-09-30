@@ -3,4 +3,9 @@
 
 .btn {
   text-decoration: none;
+  transition: opacity 0.75s;
+}
+
+.btn[disabled] {
+  opacity: 0;
 }
