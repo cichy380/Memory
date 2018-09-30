@@ -1,150 +1,16 @@
-<div>
-    <h2 class="mb-4">Game</h2>
-
+<section>
     <div class="row">
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3" v-for="(card, index) in cards">
+            <div class="card" v-bind:class="'card-'+card.color" @click="flip(index)">
+                <div class="card-flipper" v-bind:class="{'card-flipper-flipped': card.isFlipped}">
                     <div class="card-reverse">
                         <i class="card-logo fas fa-lightbulb"></i>
                     </div>
                     <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
-                    <div class="card-reverse">
-                        <i class="card-logo fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
-                    <div class="card-reverse">
-                        <i class="card-logo fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
-                    <div class="card-reverse">
-                        <i class="card-logo fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
-                    <div class="card-reverse">
-                        <i class="card-logo fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
-                    <div class="card-reverse">
-                        <i class="card-logo fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
-                    <div class="card-reverse">
-                        <i class="card-logo fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
-                    <div class="card-reverse">
-                        <i class="card-logo fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
-                    <div class="card-reverse">
-                        <i class="card-logo fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
-                    <div class="card-reverse">
-                        <i class="card-logo fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
-                    <div class="card-reverse">
-                        <i class="card-logo fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-4 mb-3">
-            <div class="card card-theme-red" @click="flip($event)">
-                <div class="card-flipper">
-                    <div class="card-reverse">
-                        <i class="card-logo fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-obverse">
-                        <i class="card-image fab fa-earlybirds"></i>
+                        <i class="card-image" v-html="card.icon"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

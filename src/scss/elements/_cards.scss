@@ -40,7 +40,6 @@
   }
 }
 
-/* flip speed goes here */
 .card-flipper {
   transition: $card-flip-speed;
   transform-style: preserve-3d;
@@ -87,7 +86,7 @@
 
 .card-logo,
 .card-image {
-  font-size: 450%;
+  font-size: 400%;
 
   @include media-breakpoint-up(sm) {
     font-size: 700%;
@@ -114,34 +113,39 @@
 .card-obverse {
   transform: rotateY(180deg);
 
-  .card-theme-blue & {
+  .card-blue & {
     background-color: $blue;
     border-color: darken($blue, 5%);
   }
 
-  .card-theme-purple & {
+  .card-purple & {
     background-color: $purple;
     border-color: darken($purple, 5%);
   }
 
-  .card-theme-red & {
+  .card-red & {
     background-color: $red;
     border-color: darken($red, 5%);
   }
 
-  .card-theme-orange & {
+  .card-orange & {
     background-color: $orange;
     border-color: darken($orange, 5%);
   }
 
-  .card-theme-yellow & {
+  .card-yellow & {
     background-color: $yellow;
     border-color: darken($yellow, 5%);
   }
 
-  .card-theme-green & {
+  .card-green & {
     background-color: $green;
     border-color: darken($green, 5%);
+  }
+
+  .card-teal & {
+    background-color: $teal;
+    border-color: darken($teal, 5%);
   }
 }
 

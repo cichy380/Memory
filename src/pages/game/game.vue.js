@@ -1,13 +1,29 @@
+import config from './../../common/config';
 import Vue from 'vue';
+import Game from './../../common/Game';
+
+let cards = []; // list of all Card objects
 
 export default Vue.extend({
-    mounted() {
-        let $cards = document.getElementsByClassName('card');
+    data() {
+        return {
+            cards: []
+        }
+    },
 
-        // [].forEach.call($cards, function ($card) {
-        //     console.log($card.offsetWidth);
-        //     console.log($card.offsetHeight);
-        //     $card.style.height = '150px';
+    mounted() {
+        let game = new Game([], config.colors, config.icons);
+
+        this.cards = game.getCards();
+
+        // [].forEach.call($cards, ($item) => {
+        //     this.cards.push(new Card($item));
         // });
+    },
+
+    methods: {
+        flip(cardIndex) {
+            this.cards[cardIndex].flip();
+        }
     },
 });

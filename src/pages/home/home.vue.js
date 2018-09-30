@@ -1,28 +1,19 @@
 import Vue from 'vue';
+import Card from './../../common/Card';
 
 export default Vue.extend({
     mounted() {
-        let timeoutId = setInterval(() => {
-            let $card = document.getElementsByClassName('card')[0];
+        let $card = document.getElementsByClassName('card')[0], //[0]: first card on page (only one card is on page)
+            card = new Card($card);
 
-            if ($card) {
-                $card.click();
+        let timeoutId = setInterval(() => {
+            if (card) {
+                card.flip();
+                //todo: if card was flipped on avers make change a card
             } else {
                 clearTimeout(timeoutId);
             }
         }, 2000);
-    },
 
-    methods: {
-        flip(event) {
-            console.log(event);
-
-            let $card = event.target,
-                $cardFlipper = $card.getElementsByClassName('card-flipper')[0];
-
-            $cardFlipper.classList.toggle('card-flipper-flipped');
-
-            //todo: if card was flipped on avers make change a card
-        }
     },
 });
