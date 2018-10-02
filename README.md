@@ -3,6 +3,8 @@
 It is a card game designed for two people play against each other. You need to match pairs of tiles. 
 Observation, concentration and memory are key to success, but... it is very easy. Enjoy!
 
+[![Play](http://marcin.silversite.pl/demo/memory/play.png)](https://marcin.silversite.pl/demo/memory/#/game)
+
 ###  --- under construction ---
 
 ![underconstruction](https://octodex.github.com/images/constructocat2.jpg)
@@ -40,7 +42,6 @@ Memory uses a number of open source projects to work properly:
  * [TypeScript 3](https://www.typescriptlang.org/)
  * [Bootstrap 4](http://getbootstrap.com/) - only CSS ([SASS](https://sass-lang.com/))
  * [FontAwesome 5](https://fontawesome.com/) - icons instead of images
- * [Animate.css](https://daneden.github.io/animate.css/) - **???** - animated card movement
  * [PWA](https://developers.google.com/web/progressive-web-apps/) - offline experiences
  * [Socket.IO 2](https://socket.io/) - **???** - multi devices play possible
                                                
@@ -64,11 +65,11 @@ Memory uses a number of open source projects to work properly:
 ### Todo
 
  - konfiguracja środowiska (Webpack)
- - routing/SPA dla obsługi kilku zakładek (eg. Game/Users/Scores/Login) 
+ - ~~routing/SPA dla obsługi kilku zakładek~~ 
  - stworzenie struktury aplikacji opartej na klasach (TypeScript: Users, Scores...)
- - stworzenie struktury CSS (opartej na BS4)
- - karty z symbolami (konfiguracja kolorów i symboli z poziomu osobnego config.js) opartymi na FontAwesome (bez obrazów)
- - animacje obrazania kart (Animate.css???)
+ - ~~stworzenie struktury CSS (opartej na BS4)~~
+ - ~~karty z symbolami (konfiguracja kolorów i symboli z poziomu osobnego config.js) opartymi na FontAwesome (bez obrazów)~~
+ - ~~animacje obrazania kart~~
  - klasa odpowiedzialna za logikę gry (losowanie układów, liczenie czasu gry, zapisywanie wyników...)
  - klasa odpowiedzialna za obsługę localStorage (zapisywanie stanu gry, wyników...)
  - wykorzystanie PWA do umożliwienia: 
