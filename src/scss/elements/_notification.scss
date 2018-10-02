@@ -1,0 +1,38 @@
+// Vue.js notifications
+//
+// https://github.com/euvl/vue-notification#style
+
+.game-notifications { // overwrite by custom name
+  padding: 10px;
+  margin: 0 5px 5px;
+
+  font-size: $font-size-base;
+
+  color: #ffffff;
+  background: $primary !important; // to overwrite style for .notification
+  border-left: 5px solid darken($primary, 15%);
+  opacity: .85;
+
+  .notification-title {
+    // Style for title line
+  }
+
+  .notification-content {
+    // Style for content
+  }
+
+  &.warn {
+    background: $warning !important;
+    border-left-color: darken($warning, 15%);
+  }
+
+  &.error {
+    background: $danger !important;
+    border-left-color: darken($danger, 15%);
+  }
+
+  &.success {
+    background: $success !important;
+    border-left-color: darken($success, 15%);
+  }
+}

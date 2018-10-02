@@ -1,14 +1,14 @@
 <div class="game">
-    <div class="alert alert-info" v-if="gameOver">Game over</div>
+    <!--<div class="alert alert-info" v-if="gameOver">Game over</div>-->
 
     <section class="game-players">
         <ul>
             <li v-for="(player, index) in players" v-bind:class="{'font-weight-bold':round.currenPlayer===index}">
                 {{player.name}} <span class="text-muted">(points: {{player.points}})</span>
-                <button class="btn btn-sm btn-outline-primary"
-                        @click="nextPlayer()"
-                        v-if="round.currenPlayer===index"
-                        :disabled="!playerChange">Next Player</button>
+                <!--<button class="btn btn-sm btn-outline-primary"-->
+                        <!--@click="nextPlayer()"-->
+                        <!--v-if="round.currenPlayer===index"-->
+                        <!--:disabled="!playerChange">Next Player</button>-->
             </li>
         </ul>
     </section>
@@ -29,4 +29,5 @@
         </div>
     </div>
 
+    <notifications position="bottom left" width="100%" animation-type="velocity" classes="game-notifications"></notifications>
 </div>

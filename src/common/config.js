@@ -1,6 +1,8 @@
 export default Object.freeze({
     cardNumbers: 12, // numbers of cards in game
 
+    notificationDuration: 2000, // time (ms) notification stays visible
+
     colors: [ // #RGB values defined in src/scss/common/_variables
         'blue',
         'purple',

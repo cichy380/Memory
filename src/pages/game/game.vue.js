@@ -25,8 +25,6 @@ export default Vue.extend({
             flippedCards: [],
         };
 
-
-
         // [].forEach.call($cards, ($item) => {
         //     this.cards.push(new Card($item));
         // });
@@ -57,10 +55,42 @@ export default Vue.extend({
                         if (this.mismatched === 0) {
                             console.info('Game over!');
                             this.gameOver = true;
+
+                            this.$notify({
+                                title: 'The cards match',
+                                text: 'You get 1 point.',
+                                duration: config.notificationDuration,
+                            });
+
+                            this.$notify({
+                                title: 'Game is over',
+                                text: 'All the cards have been matched.',
+                                type: 'success',
+                                duration: (config.notificationDuration * 2),
+                            });
+                        }
+                        else {
+                            this.$notify({
+                                title: 'The cards match',
+                                text: 'You get 1 point and another turn. Flip next 2 cards.',
+                                type: 'success',
+                                duration: config.notificationDuration,
+                            });
                         }
                     }
                     else {
+                        let nextPlayerIndex = game.getNextPlayer(this.round.currenPlayer);
+                        this.$notify({
+                            title: 'The cards do not match',
+                            text: `You lose your turn. Now it is ${this.players[nextPlayerIndex].name}'s turn.`,
+                            duration: config.notificationDuration,
+                        });
+
                         this.playerChange = true;
+
+                        setTimeout(() => {
+                            this.nextPlayer();
+                        }, config.notificationDuration);
                     }
                 }
             }
@@ -82,7 +112,7 @@ export default Vue.extend({
                 this.round.number += 1;
             }
 
-            // .. reset info aobut flipped cards
+            // .. reset info about flipped cards
             this.round.flippedCards = [];
         },
     },
