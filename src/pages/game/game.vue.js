@@ -32,6 +32,11 @@ export default Vue.extend({
 
     methods: {
         flip(cardIndex) {
+            // if clicked again flipped card
+            if (this.cards[cardIndex].isFlipped) {
+                return;
+            }
+
             // player can see only 2 cards ..
             if (this.round.flippedCards.length < 2) {
                 this.cards[cardIndex].flip();
@@ -43,7 +48,6 @@ export default Vue.extend({
                     if (game.checkCards(this.round.flippedCards) === true) {
                         // .. if YES - add point ..
                         this.players[this.round.currenPlayer].points += 1;
-                        console.info('Cards matched. Got one point!');
 
                         // .. reset info aobut flipped cards ..
                         this.round.flippedCards = [];
