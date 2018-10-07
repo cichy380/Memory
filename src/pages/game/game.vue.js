@@ -1,123 +1,99 @@
 import Vue from 'vue';
 import config from './../../common/config';
 import Game from './../../common/Game';
+import GamePlayer from './../../common/GamePlayer';
+import GamePlayersList from './../../common/GamePlayersList';
 
-let game = new Game(['Marcin', 'Ania'], config.colors, config.icons);
+let gamePlayersList = new GamePlayersList([new GamePlayer('Ania'), new GamePlayer('Marcin')]);
+let game = new Game(gamePlayersList.players);
 
 export default Vue.extend({
     data() {
         return {
-            cards: [],
-            round: {},
-            players: [],
-            playerChange: false,
-            mismatched: config.cardNumbers,
+            cards: game.getCards(),
+            justCheckedCards: [],
+            players: gamePlayersList.players,
+            activePlayer: gamePlayersList.players[0], // player #1 start
+            playerChanging: false,
             gameOver: false,
         }
     },
 
-    mounted() {
-        this.cards = game.getCards();
-        this.players = game.getPlayers();
-        this.round = {
-            number: 1, // start game = first round
-            currenPlayer: 0, // index of player (player #1 start)
-            flippedCards: [],
-        };
-
-        // [].forEach.call($cards, ($item) => {
-        //     this.cards.push(new Card($item));
-        // });
-    },
-
     methods: {
         flip(cardIndex) {
-            // if clicked again flipped card
-            if (this.cards[cardIndex].isFlipped) {
+            // player can see only 2 cards ..
+            // if clicked flipped card, do nothing
+            if (this.cards[cardIndex].isFlipped || this.justCheckedCards.length >= 2) {
                 return;
             }
 
-            // player can see only 2 cards ..
-            if (this.round.flippedCards.length < 2) {
-                this.cards[cardIndex].flip();
-                this.round.flippedCards.push(this.cards[cardIndex]);
+            this.cards[cardIndex].flip();
+            this.justCheckedCards.push(this.cards[cardIndex]);
 
-                // .. if player flipped 2 cards ..
-                if (this.round.flippedCards.length === 2) {
-                    // .. check if they are the same ..
-                    if (game.checkCards(this.round.flippedCards) === true) {
-                        // .. if YES - add point ..
-                        this.players[this.round.currenPlayer].points += 1;
+            // .. if player flipped 2 cards ..
+            if (this.justCheckedCards.length === 2) {
+                // .. check if they are the same ..
+                if (game.checkCards(this.justCheckedCards) === true) {
+                    // .. if YES - add point ..
+                    this.activePlayer.points += 1;
 
-                        // .. reset info aobut flipped cards ..
-                        this.round.flippedCards = [];
+                    // .. reset info aobut flipped cards ..
+                    this.justCheckedCards = [];
 
-                        // .. mismatched cards number (update)
-                        this.mismatched -= 2;
+                    // if all cards matched it means game over
+                    if (game.getUnflippedCards().length === 0) {
+                        this.gameOver = true;
 
-                        // if all cards matched it means game over
-                        if (this.mismatched === 0) {
-                            console.info('Game over!');
-                            this.gameOver = true;
-
-                            this.$notify({
-                                title: 'The cards match',
-                                text: 'You get 1 point.',
-                                duration: config.notificationDuration,
-                            });
-
-                            this.$notify({
-                                title: 'Game is over',
-                                text: 'All the cards have been matched.',
-                                type: 'success',
-                                duration: (config.notificationDuration * 2),
-                            });
-                        }
-                        else {
-                            this.$notify({
-                                title: 'The cards match',
-                                text: 'You get 1 point and another turn. Flip next 2 cards.',
-                                type: 'success',
-                                duration: config.notificationDuration,
-                            });
-                        }
-                    }
-                    else {
-                        let nextPlayerIndex = game.getNextPlayer(this.round.currenPlayer);
                         this.$notify({
-                            title: 'The cards do not match',
-                            text: `You lose your turn. Now it is ${this.players[nextPlayerIndex].name}'s turn.`,
+                            title: 'The cards match',
+                            text: 'You get 1 point.',
                             duration: config.notificationDuration,
                         });
 
-                        this.playerChange = true;
-
-                        setTimeout(() => {
-                            this.nextPlayer();
-                        }, config.notificationDuration);
+                        this.$notify({
+                            title: 'The game is over',
+                            text: 'All the cards have been matched.',
+                            type: 'success',
+                            duration: (config.notificationDuration * 2),
+                        });
                     }
+                    else {
+                        this.$notify({
+                            title: 'The cards match',
+                            text: 'You get 1 point and another turn. Flip next 2 cards.',
+                            type: 'success',
+                            duration: config.notificationDuration,
+                        });
+                    }
+                }
+                else {
+                    let nextPlayer = gamePlayersList.getNextPlayer(this.activePlayer);
+                    this.$notify({
+                        title: 'The cards do not match',
+                        text: `You lose your turn. Now it is ${nextPlayer.name}'s turn.`,
+                        duration: config.notificationDuration,
+                    });
+
+                    this.playerChanging = true;
+
+                    setTimeout(this.nextPlayer, config.notificationDuration);
                 }
             }
         },
 
         nextPlayer() {
-            this.playerChange = false;
+            this.playerChanging = false;
 
             // hide the cards ..
-            this.round.flippedCards.forEach((card) => {
+            this.justCheckedCards.forEach((card) => {
                 card.flip(false);
             });
 
             // .. player change ..
-            this.round.currenPlayer = game.getNextPlayer(this.round.currenPlayer);
-
-            // if this is Player #1 turn, it means it is new round
-            if (this.round.currenPlayer === 0) {
-                this.round.number += 1;
-            }
+            this.activePlayer = gamePlayersList.getNextPlayer(this.activePlayer);
 
             // .. reset info about flipped cards
-            this.round.flippedCards = [];
+            this.justCheckedCards = [];
         },
     },
 });

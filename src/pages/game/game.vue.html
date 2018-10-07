@@ -1,7 +1,7 @@
 <div class="game">
     <section class="game-players">
         <ul>
-            <li v-for="(player, index) in players" :class="{'font-weight-bold':round.currenPlayer===index}">
+            <li v-for="player in players" :class="{'font-weight-bold':activePlayer.id===player.id}">
                 {{player.name}} <span class="text-muted">(points: {{player.points}})</span>
             </li>
         </ul>
@@ -12,7 +12,7 @@
             <!-- todo: close card inside vue component -->
             <div class="card" :class="'card-'+card.color" @click="flip(index)">
                 <div class="card-flipper" :class="{'card-flipper-flipped': card.isFlipped}">
-                    <div class="card-reverse" :class="{'disable':playerChange}">
+                    <div class="card-reverse" :class="{'disable':playerChanging}">
                         <i class="card-logo fas fa-lightbulb"></i>
                     </div>
                     <div class="card-obverse">

@@ -4,17 +4,9 @@ import Card from './Card';
 
 export default class Game {
 
-    constructor(players, colors, icons) {
-        this.cards = this.generateCards(colors, icons);
-        this.players = [];
-
-        for (let playerName of players) {
-            this.players.push({
-                name: playerName,
-                points: 0,
-                time: 0
-            });
-        }
+    constructor(players) {
+        this.cards = this.generateCards(config.colors, config.icons);
+        this.players = players;
     }
 
     generateCards(colors, icons) {
@@ -36,19 +28,11 @@ export default class Game {
         return this.cards;
     }
 
-    getPlayers() {
-        return this.players;
-    }
-
-    getPlayer(idx) {
-        return this.players[idx];
+    getUnflippedCards() {
+        return this.cards.filter((card) => !card.isFlipped);
     }
 
     checkCards(cards) {
         return cards[0].id === cards[1].id;
-    }
-
-    getNextPlayer(playerIndex) {
-        return (playerIndex < (this.players.length - 1)) ? (playerIndex + 1) : 0;
     }
 }

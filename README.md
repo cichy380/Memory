@@ -39,8 +39,8 @@ Memory uses a number of open source projects to work properly:
  * [Webpack 4](https://webpack.js.org/) - module bundler
  * [**Vue 2**](https://vuejs.org) - single-page application (SPA)
  * [Vue Router 2](https://github.com/vuejs/vue-router) - official router
- * [TypeScript 3](https://www.typescriptlang.org/)
  * [Bootstrap 4](http://getbootstrap.com/) - only CSS ([SASS](https://sass-lang.com/))
+ * [Vue.js Notification](http://vue-notification.yev.io/)
  * [FontAwesome 5](https://fontawesome.com/) - icons instead of images
  * [PWA](https://developers.google.com/web/progressive-web-apps/) - offline experiences
  * [Socket.IO 2](https://socket.io/) - **???** - multi devices play possible
