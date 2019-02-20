@@ -39,12 +39,14 @@ Memory uses a number of open source projects to work properly:
  * [Webpack 4](https://webpack.js.org/) - module bundler
  * [**Vue 2**](https://vuejs.org) - single-page application (SPA)
  * [Vue Router 2](https://github.com/vuejs/vue-router) - official router
- * [Bootstrap 4](http://getbootstrap.com/) - only CSS ([SASS](https://sass-lang.com/))
- * [Vue.js Notification](http://vue-notification.yev.io/)
+ * [Material Design](https://material.io/develop/web/) - components for the web
+ * ~~[Bootstrap 4](http://getbootstrap.com/) - only CSS ([SASS](https://sass-lang.com/))~~
+ * ~~[Vue.js Notification](http://vue-notification.yev.io/)~~
  * [FontAwesome 5](https://fontawesome.com/) - icons instead of images
- * [PWA](https://developers.google.com/web/progressive-web-apps/) - offline experiences
- * [Socket.IO 2](https://socket.io/) - **???** - multi devices play possible
-                                               
+ * [PWA](https://developers.google.com/web/progressive-web-apps/) - offline experiences...
+ * [Socket.IO 2](https://socket.io/) - multi devices play possible
+
+more on: [project plan](https://github.com/cichy380/Memory/projects)
 
 ### Environment installation 
 
@@ -61,24 +63,6 @@ Memory uses a number of open source projects to work properly:
 * `yarn dev` or `npm run dev` — compile assets for developing (with source maps, without minify)
 * `yarn watch` or `npm watch` — compile assets when file changes are made
 * `yarn build` or `npm run buld` — compile and optimize the files in your assets directory
-
-### Todo
-
- - konfiguracja środowiska (Webpack)
- - ~~routing/SPA dla obsługi kilku zakładek~~ 
- - stworzenie struktury aplikacji opartej na klasach (TypeScript: Users, Scores...)
- - ~~stworzenie struktury CSS (opartej na BS4)~~
- - ~~karty z symbolami (konfiguracja kolorów i symboli z poziomu osobnego config.js) opartymi na FontAwesome (bez obrazów)~~
- - ~~animacje obrazania kart~~
- - klasa odpowiedzialna za logikę gry (losowanie układów, liczenie czasu gry, zapisywanie wyników...)
- - klasa odpowiedzialna za obsługę localStorage (zapisywanie stanu gry, wyników...)
- - wykorzystanie PWA do umożliwienia: 
-    * robienia skrótów na pulpicie urządzeń mobilnych
-    * usunięcia paska adresu przeglądarki
-    * stworzenia wersji offline (Service Worker)
-    * publikacji komunikatów ??? od innych graczy chcących grać z nami
- - Testy i sprawdzanie poprawności kodu za pomocą np. ESLint
- - Server z API do zapisywania wyników gry ??? czyli logowanie się 
 
 ## License
 
