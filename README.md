@@ -39,7 +39,7 @@ Memory uses a number of open source projects to work properly:
  * [Webpack 4](https://webpack.js.org/) - module bundler
  * [**Angular 8**](https://angular.io/) - single-page application (SPA) framework
  * [TypeScript](https://www.typescriptlang.org/) - typed superset of JavaScript
-
+ * [Material Design](https://material.angular.io/) - components for Angular
 
 more on: [project plan](https://github.com/cichy380/Memory/projects)
 
