@@ -30,39 +30,38 @@ Observation, concentration and memory are key to success, but... it is very easy
 
 ## Development
 
-Memory will be a cloud-enabled, mobile-ready, offline-storage, VueJS powered online game. Feel free to join us to develop it!
+Memory was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 
-### Tech stack and Features
+#### Tech stack and Features
 
 Memory uses a number of open source projects to work properly:
 
  * [Webpack 4](https://webpack.js.org/) - module bundler
- * [**Vue 2**](https://vuejs.org) - single-page application (SPA)
- * [Vue Router 2](https://github.com/vuejs/vue-router) - official router
- * [Material Design](https://material.io/develop/web/) - components for the web
- * ~~[Bootstrap 4](http://getbootstrap.com/) - only CSS ([SASS](https://sass-lang.com/))~~
- * ~~[Vue.js Notification](http://vue-notification.yev.io/)~~
- * [FontAwesome 5](https://fontawesome.com/) - icons instead of images
- * [PWA](https://developers.google.com/web/progressive-web-apps/) - offline experiences...
- * [Socket.IO 2](https://socket.io/) - multi devices play possible
+ * [**Angular 8**](https://angular.io/) - single-page application (SPA) framework
+ * [TypeScript](https://www.typescriptlang.org/) - typed superset of JavaScript
+
 
 more on: [project plan](https://github.com/cichy380/Memory/projects)
 
-### Environment installation 
+#### Development server
 
-1. Developing Memory requires [Node.js](http://nodejs.org/download/). 
-2. I recommend you installation to the latest version of [Yarn](https://yarnpkg.com/en/) globally.
-3. Clone the repo.
-4. From the command line run `yarn` (recommended) or `npm install`.
-5. For best developer environment install browsersync, webpack-cli and webpack-dev-server etc.:
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-    `npm install --dev`
+#### Code scaffolding
 
-### Commands:
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-* `yarn dev` or `npm run dev` — compile assets for developing (with source maps, without minify)
-* `yarn watch` or `npm watch` — compile assets when file changes are made
-* `yarn build` or `npm run buld` — compile and optimize the files in your assets directory
+#### Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+#### Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+#### Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## License
 
