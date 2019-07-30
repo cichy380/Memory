@@ -1,4 +1,14 @@
 @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 
-html, body { height: 100%; }
-body { margin: 0; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+footer {
+  flex-shrink: 0;
+}
