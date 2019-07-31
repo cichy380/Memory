@@ -1,5 +1,11 @@
 @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
