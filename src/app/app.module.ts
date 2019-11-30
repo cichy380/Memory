@@ -7,12 +7,14 @@ import { AngularMaterialModule } from './angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { StartComponent } from './pages/start/start.component';
 import { GameComponent } from './game/game.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
     GameComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
