@@ -1,24 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,600');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import "./styles/variables";
+@import "./styles/base";
+@import "./styles/vendor/material-icons";
+@import "./styles/layout";
+@import "./styles/helper";
+@import "./styles/theme";
+@import "./styles/snackbar";
+@import "./styles/progressbar";
 
-
-@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-}
-
-footer {
-  flex-shrink: 0;
-}
+/* You can add global styles to this file, and also import other style files */

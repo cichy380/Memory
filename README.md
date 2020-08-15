@@ -3,7 +3,7 @@
 It is a card game designed for two people play against each other. You need to match pairs of tiles. 
 Observation, concentration and memory are key to success, but... it is very easy. Enjoy!
 
-[![Play](http://marcin.silversite.pl/demo/memory/play.png)](https://marcin.silversite.pl/demo/memory/#/game)
+
 
 ###  --- under construction ---
 
@@ -30,38 +30,18 @@ Observation, concentration and memory are key to success, but... it is very easy
 
 ## Development
 
-Memory was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+*Memory* was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 #### Tech stack and Features
 
-Memory uses a number of open source projects to work properly:
+*Memory* uses a number of open source projects to work properly:
 
- * [Webpack 4](https://webpack.js.org/) - module bundler
- * [**Angular 8**](https://angular.io/) - single-page application (SPA) framework
+ * [**Angular**](https://angular.io/) - single-page application (SPA) framework
+ * [NgRx](https://ngrx.io/) - reactive state for Angular
  * [TypeScript](https://www.typescriptlang.org/) - typed superset of JavaScript
  * [Material Design](https://material.angular.io/) - components for Angular
 
 more on: [project plan](https://github.com/cichy380/Memory/projects)
-
-#### Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-#### Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-#### Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-#### Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-#### Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## License
 

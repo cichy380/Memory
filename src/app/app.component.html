@@ -1,31 +1,36 @@
-<div class="app-wrap">
-  <header role="banner">
-    <!-- Toolbar -->
-    <mat-toolbar color="primary" class="toolbar">
-      <mat-toolbar-row>
-        <span class="toolbar__title">Memory.</span>
-        <span class="toolbar__spacer"></span>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon aria-hidden="false" aria-label="Menu icon">more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" xPosition="before">
-          <button mat-menu-item>Menu Item #1</button>
-          <button mat-menu-item>Menu Item #2</button>
-        </mat-menu>
-      </mat-toolbar-row>
-    </mat-toolbar>
-    <!-- /Toolbar -->
-  </header>
+<app-progress></app-progress>
 
-  <main class="app-content">
-    <router-outlet></router-outlet>
-  </main>
+<mat-sidenav-container class="app-wrapper">
+  <mat-sidenav mode="side" #sidenav class="app-sidebar">
+    <aside>
+      <nav>
+        <ul>
+          <li>
+            <a [routerLink]="['link']" [routerLinkActive]="'active'">
+              Link
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['link']" [routerLinkActive]="'active'">
+              Link
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['link']" [routerLinkActive]="'active'">
+              Link
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+  </mat-sidenav>
+  <mat-sidenav-content class="app-content">
+    <app-header (sidenavIconClick)="sidenav.toggle()"></app-header>
 
-  <footer class="app-footer">
-    <div class="app-footer__container">
-      <div class="app-footer__content">
-        MIT Licence
-      </div>
-    </div>
-  </footer>
-</div>
+    <main class="app-content__main">
+      <router-outlet></router-outlet>
+    </main>
+
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

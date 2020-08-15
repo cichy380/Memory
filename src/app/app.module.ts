@@ -1,29 +1,42 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { AppRoutingModule } from './app-routing.module'
+import { CoreModule } from './core/core.module'
+import { SharedModule } from './shared/shared.module'
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './angular-material.module';
-import { AppRoutingModule } from './app-routing.module';
-import { StartComponent } from './pages/start/start.component';
-import { GameComponent } from './game/game.component';
-import { CardComponent } from './card/card.component';
+import { AppComponent } from './app.component'
+import { HomeComponent } from './core/components/home/home.component'
+import { HeaderComponent } from './core/components/header/header.component'
+import { FooterComponent } from './core/components/footer/footer.component'
+import { NotificationPageComponent } from './core/components/notification-page/notification-page.component'
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    StartComponent,
-    GameComponent,
-    CardComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    NotificationPageComponent, // TODO: After creating PageHeaderComponent move it to declarations of CoreModule
   ],
   imports: [
+    // angular
     BrowserModule,
+
+    // material design
     BrowserAnimationsModule,
-    AngularMaterialModule,
+
+    // core & shared
+    CoreModule,
+    SharedModule,
+
+    // app routing
     AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+
+export class AppModule {
+}
