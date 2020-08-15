@@ -46,6 +46,7 @@ $app-accent: mat-palette($mat-pink, A200, A100, A400);
 $app-warn: mat-palette($mat-red);
 
 $color-primary: map-get($app-primary, 500);
+$color-accent: map-get($app-accent, 500);
 $color-success: map-get(mat-palette($mat-green), 500);
 $color-danger: map-get($app-warn, 500);
 
