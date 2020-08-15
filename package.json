@@ -15,7 +15,8 @@
     "lint:scss": "stylelint \"./src/**/*.scss\"",
     "e2e": "ng e2e",
     "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
-    "mock": "json-server ./mock/index.js --routes ./mock/routes.json"
+    "mock": "json-server ./mock/index.js --routes ./mock/routes.json",
+    "deploy": "ng build --prod --base-href https://cichy380.github.io/Memory/ && ngh --dir=dist/memory"
   },
   "private": true,
   "dependencies": {
@@ -33,6 +34,7 @@
     "@ngrx/entity": "^10.0.0",
     "@ngrx/store": "^10.0.0",
     "@ngrx/store-devtools": "^10.0.0",
+    "angular-cli-ghpages": "^0.6.2",
     "material-icons-font": "^2.0.0",
     "ngx-progressbar": "^6.0.2",
     "rxjs": "^6.5.3",
