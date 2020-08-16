@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { GameService } from './game.service'
+import { Card } from './components/card/card.model'
 
 @Component({
   selector: 'app-game',
@@ -7,6 +9,11 @@ import { Component, OnInit } from '@angular/core'
 })
 export class GameComponent implements OnInit {
   public columns: number
+  public deck: Card[]
+
+  constructor(service: GameService) {
+    this.deck = service.getDeck()
+  }
 
   static getColumns(deviceWidth: number) {
     let columnNumber: number

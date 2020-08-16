@@ -1,21 +1,9 @@
 <div class="page-content game-content">
   <div class="container">
     <mat-grid-list [cols]="columns" rowHeight="1:1.25" gutterSize="16px" (window:resize)="onResize($event)">
-      <mat-grid-tile>xxx</mat-grid-tile>
-      <mat-grid-tile>xxx</mat-grid-tile>
-      <mat-grid-tile>xxx</mat-grid-tile>
-
-      <mat-grid-tile>xxx</mat-grid-tile>
-      <mat-grid-tile>xxx</mat-grid-tile>
-      <mat-grid-tile>xxx</mat-grid-tile>
-
-      <mat-grid-tile>xxx</mat-grid-tile>
-      <mat-grid-tile>xxx</mat-grid-tile>
-      <mat-grid-tile>xxx</mat-grid-tile>
-
-      <mat-grid-tile>xxx</mat-grid-tile>
-      <mat-grid-tile>xxx</mat-grid-tile>
-      <mat-grid-tile>xxx</mat-grid-tile>
+      <mat-grid-tile class="overflow-visible" *ngFor="let card of deck">
+        <app-card [suit]="card.suit" [color]="card.color"></app-card>
+      </mat-grid-tile>
     </mat-grid-list>
   </div>
 </div>

@@ -59,6 +59,20 @@ $body-bg: map-get($mat-gray, 50);
 
 $page-header-bg: map-get($app-primary, 50);
 
+$card-colors: ();
+$card-colors: map-merge((
+  "red": #e53935,
+  "pink": #e91e63,
+  "purple": #ab47bc,
+  "indigo": #5c6bc0,
+  "blue": #1976d2,
+  "cyan": #00838f,
+  "teal": #00796b,
+  "green": #388e3c,
+  "orange": #f57c00,
+  "brown": #795548,
+), $card-colors);
+
 
 // ng-progress
 
