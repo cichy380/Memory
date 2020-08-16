@@ -3,7 +3,7 @@
 It is a card game designed for two people play against each other. You need to match pairs of tiles. 
 Observation, concentration and memory are key to success, but... it is very easy. Enjoy!
 
-
+[![Play](https://raw.githubusercontent.com/cichy380/Memory/master/btn-play.png)](https://cichy380.github.io/Memory/)
 
 ###  --- under construction ---
 
@@ -30,7 +30,7 @@ Observation, concentration and memory are key to success, but... it is very easy
 
 ## Development
 
-*Memory* was generated with [Angular CLI](https://github.com/angular/angular-cli).
+*Memory* was based on [angular-starter-app](https://github.com/matsta25/angular-starter-app).
 
 #### Tech stack and Features
 
