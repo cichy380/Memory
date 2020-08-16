@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { CardColors, CardSuits } from './card.model'
+import { Card } from './card.model'
 
 @Component({
   selector: 'app-card',
@@ -8,11 +8,5 @@ import { CardColors, CardSuits } from './card.model'
 })
 export class CardComponent {
   @Input()
-  suit: CardSuits
-
-  @Input()
-  color: CardColors
-
-  @Input()
-  isFlipped: boolean
+  card: Card
 }

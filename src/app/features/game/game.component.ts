@@ -11,8 +11,8 @@ export class GameComponent implements OnInit {
   public columns: number
   public deck: Card[]
 
-  constructor(service: GameService) {
-    this.deck = service.getDeck()
+  constructor(private service: GameService) {
+    this.deck = service.getNewDeck()
   }
 
   static getColumns(deviceWidth: number) {
@@ -27,6 +27,10 @@ export class GameComponent implements OnInit {
     }
 
     return columnNumber
+  }
+
+  public onClickCard(card: Card) {
+    card.isFlipped = true
   }
 
   ngOnInit(): void {

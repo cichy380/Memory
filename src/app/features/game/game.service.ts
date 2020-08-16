@@ -4,18 +4,19 @@ import { Card, CardSuits, CardColors } from './components/card/card.model'
 @Injectable()
 export class GameService {
   private readonly cardNumber = 12
+  private deck: Card[] = []
 
-  public getDeck() {
+  public getNewDeck() {
     const shuffledSuits = this.shuffle(this.getAllAvailableSuit())
     const shuffledColors = this.shuffle(this.getAllAvailableColors())
-    const deck = []
 
     for(let i = 0; i < (this.cardNumber / 2); i+=1) {
-      deck.push(new Card(shuffledSuits[i], shuffledColors[i]))
-      deck.push(new Card(shuffledSuits[i], shuffledColors[i]))
+      this.deck.push(new Card(shuffledSuits[i], shuffledColors[i]))
+      this.deck.push(new Card(shuffledSuits[i], shuffledColors[i]))
     }
 
-    return this.shuffle(deck)
+    this.deck = this.shuffle(this.deck)
+    return this.deck
   }
 
   private getAllAvailableSuit() {

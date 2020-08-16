@@ -1,6 +1,7 @@
 export class Card {
   private readonly innerSuit: CardSuits
   private readonly innerColor: CardColors
+  private innerIsFlipped: boolean
 
   constructor(suit, color) {
     this.innerSuit = suit
@@ -13,6 +14,14 @@ export class Card {
 
   get color() {
     return this.innerColor
+  }
+
+  get isFlipped() {
+    return this.innerIsFlipped
+  }
+
+  set isFlipped(newValue) {
+    this.innerIsFlipped = newValue
   }
 }
 
