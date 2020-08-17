@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core'
-import { Card, CardSuits, CardColors } from './components/card/card.model'
+import { Observable, of } from 'rxjs'
+import { Card, CardSuits, CardColors } from '../components/card/card.model'
+import { ResponseModel } from '../../../shared/models/response-model.model'
 
-@Injectable()
+
+@Injectable({
+  providedIn: 'root',
+})
 export class GameService {
   private readonly cardNumber = 12
   private deck: Card[] = []
 
-  public getNewDeck() {
+  public fetchDeck(): Observable<ResponseModel<Card[]>> {
     const shuffledSuits = this.shuffle(this.getAllAvailableSuit())
     const shuffledColors = this.shuffle(this.getAllAvailableColors())
 
@@ -16,7 +21,7 @@ export class GameService {
     }
 
     this.deck = this.shuffle(this.deck)
-    return this.deck
+    return of({data: this.deck})
   }
 
   private getAllAvailableSuit() {

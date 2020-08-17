@@ -19,7 +19,7 @@ import {
   updatePostsItemSuccess,
 } from './posts.actions'
 import { catchError, map, mergeMap, tap } from 'rxjs/operators'
-import { HttpResponseModel } from '../../../shared/models/http-response-model.model'
+import { ResponseModel } from '../../../shared/models/response-model.model'
 import { Post } from '../models/post.model'
 import { of } from 'rxjs'
 import { Router } from '@angular/router'
@@ -36,7 +36,7 @@ export class PostsEffects {
     this.actions$.pipe(
       ofType(createPostsItem.type),
       mergeMap(({post}) => this.postsService.createItem(post).pipe(
-        map((response: HttpResponseModel<Post>) => ({
+        map((response: ResponseModel<Post>) => ({
           type: createPostsItemSuccess.type,
           post: response,
         })),
@@ -51,7 +51,7 @@ export class PostsEffects {
     this.actions$.pipe(
       ofType(readPosts.type),
       mergeMap(() => this.postsService.readItems().pipe(
-        map((response: HttpResponseModel<Post[]>) => ({
+        map((response: ResponseModel<Post[]>) => ({
           type: readPostsSuccess.type,
           posts: response,
         })),
@@ -66,7 +66,7 @@ export class PostsEffects {
     this.actions$.pipe(
       ofType(readPostsItem.type),
       mergeMap(({id}) => this.postsService.readItem(id).pipe(
-        map((response: HttpResponseModel<Post>) => ({
+        map((response: ResponseModel<Post>) => ({
           type: readPostsItemSuccess.type,
           post: response,
         })),
@@ -82,7 +82,7 @@ export class PostsEffects {
       ofType(updatePostsItem.type),
       mergeMap((({updatePost}: {updatePost: {id: string, changes: Post}}) =>
         this.postsService.updateItem(updatePost.id, updatePost.changes).pipe(
-          map((response: HttpResponseModel<Post>) => ({
+          map((response: ResponseModel<Post>) => ({
             type: updatePostsItemSuccess.type,
             post: response,
           })),
@@ -98,7 +98,7 @@ export class PostsEffects {
     this.actions$.pipe(
       ofType(deletePostsItem.type),
       mergeMap(({id}) => this.postsService.deleteItem(id).pipe(
-        map((response: HttpResponseModel<Post>) => ({
+        map((response: ResponseModel<Post>) => ({
           type: deletePostsItemSuccess.type,
           post: response,
         })),

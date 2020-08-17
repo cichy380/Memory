@@ -5,7 +5,7 @@ import { GameRoutingModule } from './game-routing.module'
 
 import { GameComponent } from './game.component'
 import { CardComponent } from './components/card/card.component'
-import { GameService } from './game.service'
+import { GameService } from './services/game.service'
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { GameService } from './game.service'
     CommonModule,
     SharedModule,
     GameRoutingModule,
-  ],providers: [
+  ],
+  providers: [
     GameService,
   ],
 })

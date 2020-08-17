@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core'
-import { GameService } from './game.service'
 import { Card } from './components/card/card.model'
+import { select, Store } from '@ngrx/store'
+import { AppState } from '../../core/app-store/app-store.state'
+import { readDeck } from './store/game.actions'
+import { selectGameDeck } from './store/game.selectors'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-game',
@@ -9,10 +13,10 @@ import { Card } from './components/card/card.model'
 })
 export class GameComponent implements OnInit {
   public columns: number
-  public deck: Card[]
+  public deck$: Observable<Card[]>
 
-  constructor(private service: GameService) {
-    this.deck = service.getNewDeck()
+  constructor(private store: Store<AppState>) {
+    store.dispatch(readDeck())
   }
 
   static getColumns(deviceWidth: number) {
@@ -30,11 +34,12 @@ export class GameComponent implements OnInit {
   }
 
   public onClickCard(card: Card) {
-    card.isFlipped = true
+    // TODO: flipping card by action dispatch
   }
 
   ngOnInit(): void {
     this.columns = GameComponent.getColumns(window.innerWidth)
+    this.deck$ = this.store.pipe(select(selectGameDeck))
   }
 
   public onResize(event) {

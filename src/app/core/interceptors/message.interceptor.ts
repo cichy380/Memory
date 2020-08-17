@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs'
 import { ErrorService } from '../services/error.service'
 import { NotificationBarService } from '../../shared/services/notification-bar.service'
 import { catchError, tap } from 'rxjs/operators'
-import { HttpResponseModel } from '../../shared/models/http-response-model.model'
+import { ResponseModel } from '../../shared/models/response-model.model'
 
 
 @Injectable()
@@ -17,7 +17,7 @@ export class MessageInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          const responseData: HttpResponseModel<any> = event.body
+          const responseData: ResponseModel<any> = event.body
           if (responseData && responseData.message && !event.url.includes('/err-logs')) {
             this.notificationService.showSuccess(responseData.message)
           }
