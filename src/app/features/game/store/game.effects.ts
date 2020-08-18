@@ -3,7 +3,7 @@ import { of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 
-import { readDeck, readDeckFail, readDeckSuccess } from './game.actions'
+import { flipGameCard, flipGameCardFail, flipGameCardSuccess, readDeck, readDeckFail, readDeckSuccess } from './game.actions'
 import { GameService } from '../services/game.service'
 import { Card } from '../components/card/card.model'
 import { ResponseModel } from '../../../shared/models/response-model.model'
@@ -23,6 +23,19 @@ export class GameEffects {
           type: readDeckSuccess.type,
         })),
         catchError(() => of({type: readDeckFail.type})),
+      )),
+    ),
+  )
+
+  flipCard$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(flipGameCard),
+      mergeMap(({cardIndex}) => this.service.flipCard(cardIndex).pipe(
+        map((response: ResponseModel<number>) => ({
+          cardIndex: response.data,
+          type: flipGameCardSuccess.type,
+        })),
+        catchError(() => of({type: flipGameCardFail.type})),
       )),
     ),
   )

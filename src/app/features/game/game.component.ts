@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Card } from './components/card/card.model'
 import { select, Store } from '@ngrx/store'
 import { AppState } from '../../core/app-store/app-store.state'
-import { readDeck } from './store/game.actions'
+import { flipGameCard, readDeck } from './store/game.actions'
 import { selectGameDeck } from './store/game.selectors'
 import { Observable } from 'rxjs'
 
@@ -33,8 +33,10 @@ export class GameComponent implements OnInit {
     return columnNumber
   }
 
-  public onClickCard(card: Card) {
-    // TODO: flipping card by action dispatch
+  public onClickCard(card: Card, cardIndex: number) {
+    if (card.isFlipped === false) {
+      this.store.dispatch(flipGameCard({cardIndex}))
+    }
   }
 
   ngOnInit(): void {

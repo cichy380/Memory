@@ -24,6 +24,10 @@ export class GameService {
     return of({data: this.deck})
   }
 
+  public flipCard(index: number): Observable<ResponseModel<number>> {
+    return of({data: index})
+  }
+
   private getAllAvailableSuit() {
     return Object.keys(CardSuits).map(key => CardSuits[key]).filter(value => typeof value === 'string') as string[]
   }

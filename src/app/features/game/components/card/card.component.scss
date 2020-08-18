@@ -12,14 +12,26 @@
 }
 
 .card {
-  transition: .6s;
   transform-style: preserve-3d;
   position: relative;
+  transform: rotateY(0deg);
 }
 
-.card-wrapper:hover .card, // TODO: remove line with ":hover"
 .card_flipped {
   transform: rotateY(180deg);
+}
+
+@keyframes FlipAnimation {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.flip-animation {
+  animation: FlipAnimation 1s;
 }
 
 .card-wrapper,
