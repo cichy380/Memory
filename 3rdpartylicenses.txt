@@ -94,9 +94,6 @@ MIT
 @ngrx/effects
 MIT
 
-@ngrx/entity
-MIT
-
 @ngrx/store
 MIT
 
