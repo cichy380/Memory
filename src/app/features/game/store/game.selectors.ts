@@ -8,3 +8,13 @@ export const selectGameDeck = createSelector(
   selectGame,
   (stateGame: GameState) => stateGame.deck,
 )
+
+export const selectGameJustFlippedCardIdx = createSelector(
+  selectGame,
+  (stateGame: GameState) => stateGame.justFlippedIdx,
+)
+
+export const selectGameRound = createSelector(
+  selectGame,
+  (stateGame: GameState) => stateGame.round,
+)

@@ -4,7 +4,7 @@
       <mat-icon class="card__icon">lightbulb_outline</mat-icon>
     </mat-card>
     <mat-card class="card__face">
-      <mat-icon [className]="'card__icon card-color_' + card.color">
+      <mat-icon [className]="'card__icon card-color_' + card.color" *ngIf="card.isFlipped">
         {{ card.suit }}
       </mat-icon>
     </mat-card>

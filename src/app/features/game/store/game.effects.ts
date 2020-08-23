@@ -3,9 +3,18 @@ import { of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 
-import { flipGameCard, flipGameCardFail, flipGameCardSuccess, readDeck, readDeckFail, readDeckSuccess } from './game.actions'
+import {
+  flipGameCard,
+  flipGameCardFail,
+  flipGameCardSuccess,
+  readDeck,
+  readDeckFail,
+  readDeckSuccess,
+  updateDeck,
+  updateDeckSuccess,
+  updateDeckFail,
+} from './game.actions'
 import { GameService } from '../services/game.service'
-import { Card } from '../components/card/card.model'
 import { ResponseModel } from '../../../shared/models/response-model.model'
 
 
@@ -18,11 +27,27 @@ export class GameEffects {
     this.actions$.pipe(
       ofType(readDeck),
       mergeMap(() => this.service.fetchDeck().pipe(
-        map((response: ResponseModel<Card[]>) => ({
-          deck: response.data,
+        map((response: ResponseModel) => ({
+          deck: response.data.deck,
+          round: response.data.round,
           type: readDeckSuccess.type,
         })),
         catchError(() => of({type: readDeckFail.type})),
+      )),
+    ),
+  )
+
+  updateDeck$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateDeck),
+      mergeMap(() => this.service.update().pipe(
+        map((response: ResponseModel) => ({
+          deck: response.data.deck,
+          round: response.data.round,
+          justFlippedIdx: response.data.justFlippedIdx,
+          type: updateDeckSuccess.type,
+        })),
+        catchError(() => of({type: updateDeckFail.type})),
       )),
     ),
   )
@@ -31,8 +56,10 @@ export class GameEffects {
     this.actions$.pipe(
       ofType(flipGameCard),
       mergeMap(({cardIndex}) => this.service.flipCard(cardIndex).pipe(
-        map((response: ResponseModel<number>) => ({
-          cardIndex: response.data,
+        map((response: ResponseModel) => ({
+          cardIndex,
+          round: response.data.round,
+          justFlippedIdx: response.data.justFlippedIdx,
           type: flipGameCardSuccess.type,
         })),
         catchError(() => of({type: flipGameCardFail.type})),

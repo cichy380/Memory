@@ -1,22 +1,30 @@
-import { Component, OnInit } from '@angular/core'
-import { Card } from './components/card/card.model'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Observable, Subscription } from 'rxjs'
 import { select, Store } from '@ngrx/store'
+import { Card } from './components/card/card.model'
 import { AppState } from '../../core/app-store/app-store.state'
-import { flipGameCard, readDeck } from './store/game.actions'
-import { selectGameDeck } from './store/game.selectors'
-import { Observable } from 'rxjs'
+import { flipGameCard, readDeck, updateDeck } from './store/game.actions'
+import { selectGameDeck, selectGameJustFlippedCardIdx } from './store/game.selectors'
+
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
 })
-export class GameComponent implements OnInit {
+export class GameComponent implements OnInit, OnDestroy {
   public columns: number
   public deck$: Observable<Card[]>
+  private justFlippedCardIdx$: Observable<number[]>
+  private justFlippedCardIdx: number[]
+  private subscription: Subscription
 
   constructor(private store: Store<AppState>) {
     store.dispatch(readDeck())
+
+    this.deck$ = this.store.pipe(select(selectGameDeck))
+    this.justFlippedCardIdx$ = this.store.pipe(select(selectGameJustFlippedCardIdx))
+    this.justFlippedCardIdx = []
   }
 
   static getColumns(deviceWidth: number) {
@@ -34,14 +42,24 @@ export class GameComponent implements OnInit {
   }
 
   public onClickCard(card: Card, cardIndex: number) {
-    if (card.isFlipped === false) {
+    if (card.isFlipped === false && this.justFlippedCardIdx.length < 2) {
       this.store.dispatch(flipGameCard({cardIndex}))
     }
   }
 
   ngOnInit(): void {
     this.columns = GameComponent.getColumns(window.innerWidth)
-    this.deck$ = this.store.pipe(select(selectGameDeck))
+
+    this.subscription = this.justFlippedCardIdx$.subscribe(justFlippedCardIdx => {
+      this.justFlippedCardIdx = justFlippedCardIdx
+      if (justFlippedCardIdx.length === 2) {
+        setTimeout(() => this.store.dispatch(updateDeck()), 2000)
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 
   public onResize(event) {
