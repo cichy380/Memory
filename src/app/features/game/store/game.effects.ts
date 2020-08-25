@@ -28,8 +28,9 @@ export class GameEffects {
       ofType(readDeck),
       mergeMap(() => this.service.fetchDeck().pipe(
         map((response: ResponseModel) => ({
-          deck: response.data.deck,
           round: response.data.round,
+          deck: response.data.deck,
+          flipped: response.data.flipped,
           type: readDeckSuccess.type,
         })),
         catchError(() => of({type: readDeckFail.type})),
@@ -42,8 +43,8 @@ export class GameEffects {
       ofType(updateDeck),
       mergeMap(() => this.service.update().pipe(
         map((response: ResponseModel) => ({
-          deck: response.data.deck,
           round: response.data.round,
+          flipped: response.data.flipped,
           justFlippedIdx: response.data.justFlippedIdx,
           type: updateDeckSuccess.type,
         })),
@@ -57,8 +58,8 @@ export class GameEffects {
       ofType(flipGameCard),
       mergeMap(({cardIndex}) => this.service.flipCard(cardIndex).pipe(
         map((response: ResponseModel) => ({
-          cardIndex,
           round: response.data.round,
+          flipped: response.data.flipped,
           justFlippedIdx: response.data.justFlippedIdx,
           type: flipGameCardSuccess.type,
         })),

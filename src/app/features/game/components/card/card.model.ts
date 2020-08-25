@@ -1,5 +1,4 @@
 export class Card {
-  public isFlipped = false
   constructor(
     public suit: CardSuits,
     public color: CardColors,

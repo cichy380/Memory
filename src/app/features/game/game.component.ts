@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store'
 import { Card } from './components/card/card.model'
 import { AppState } from '../../core/app-store/app-store.state'
 import { flipGameCard, readDeck, updateDeck } from './store/game.actions'
-import { selectGameDeck, selectGameJustFlippedCardIdx } from './store/game.selectors'
+import { selectGameDeck, selectGameFlipped, selectGameJustFlippedCardIdx } from './store/game.selectors'
 
 
 @Component({
@@ -15,6 +15,7 @@ import { selectGameDeck, selectGameJustFlippedCardIdx } from './store/game.selec
 export class GameComponent implements OnInit, OnDestroy {
   public columns: number
   public deck$: Observable<Card[]>
+  public flipped$: Observable<boolean[]>
   private justFlippedCardIdx$: Observable<number[]>
   private justFlippedCardIdx: number[]
   private subscription: Subscription
@@ -22,8 +23,9 @@ export class GameComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>) {
     store.dispatch(readDeck())
 
-    this.deck$ = this.store.pipe(select(selectGameDeck))
-    this.justFlippedCardIdx$ = this.store.pipe(select(selectGameJustFlippedCardIdx))
+    this.deck$ = store.pipe(select(selectGameDeck))
+    this.flipped$ = store.pipe(select(selectGameFlipped))
+    this.justFlippedCardIdx$ = store.pipe(select(selectGameJustFlippedCardIdx))
     this.justFlippedCardIdx = []
   }
 
@@ -41,8 +43,8 @@ export class GameComponent implements OnInit, OnDestroy {
     return columnNumber
   }
 
-  public onClickCard(card: Card, cardIndex: number) {
-    if (card.isFlipped === false && this.justFlippedCardIdx.length < 2) {
+  public onClickCard(cardIndex: number, cardFlipped: boolean) {
+    if (cardFlipped === false && this.justFlippedCardIdx.length < 2) {
       this.store.dispatch(flipGameCard({cardIndex}))
     }
   }

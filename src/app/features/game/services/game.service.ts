@@ -10,8 +10,13 @@ import { ResponseModel } from '../../../shared/models/response-model.model'
 export class GameService {
   private readonly cardNumber = 12
   private deck: Card[] = []
+  private flipped: boolean[]
   private round = 1
   private justFlippedIdx: number[] = []
+
+  constructor() {
+    this.flipped = Array(this.cardNumber).fill(false)
+  }
 
   public fetchDeck(): Observable<ResponseModel> {
     const shuffledSuits = this.shuffle(this.getAllAvailableSuit())
@@ -23,14 +28,14 @@ export class GameService {
     }
 
     this.deck = this.shuffle(this.deck)
-    return of({data: {deck: this.clone(this.deck), round: this.round}})
+    return of({data: {round: this.round, deck: this.deck, flipped: this.clone(this.flipped)}})
   }
 
   public flipCard(index: number): Observable<ResponseModel> {
     let match = false
 
-    if (this.deck[index].isFlipped === false && this.justFlippedIdx.length < 2) {
-      this.deck[index].isFlipped = true
+    if (this.flipped[index] === false && this.justFlippedIdx.length < 2) {
+      this.flipped[index] = true
       this.justFlippedIdx.push(index)
 
       if (this.justFlippedIdx.length === 2) {
@@ -38,7 +43,7 @@ export class GameService {
       }
     }
 
-    return of({data: {match, round: this.round, justFlippedIdx: this.clone(this.justFlippedIdx)}})
+    return of({data: {match, round: this.round, flipped: this.clone(this.flipped), justFlippedIdx: this.clone(this.justFlippedIdx)}})
   }
 
   public update(): Observable<ResponseModel> {
@@ -51,7 +56,7 @@ export class GameService {
       this.flipBackUnmatchedCards()
     }
 
-    return of({data: {round: this.round, justFlippedIdx: this.clone(this.justFlippedIdx), deck: this.clone(this.deck)}})
+    return of({data: {round: this.round, flipped: this.clone(this.flipped), justFlippedIdx: this.clone(this.justFlippedIdx)}})
   }
 
   private getAllAvailableSuit() {
@@ -73,7 +78,7 @@ export class GameService {
 
     do {
       cardIdx = this.justFlippedIdx.pop()
-      this.deck[cardIdx].isFlipped = false
+      this.flipped[cardIdx] = false
     }
     while(this.justFlippedIdx.length)
   }

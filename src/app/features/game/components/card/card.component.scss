@@ -15,24 +15,22 @@
   transform-style: preserve-3d;
   position: relative;
   transform: rotateY(0deg);
+  transition: transform .3s ease-in-out;
 }
 
 .card_flipped {
   transform: rotateY(180deg);
+  transition-duration: .6s;
 }
 
-@keyframes FlipAnimation {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(180deg);
-  }
-}
-
-.flip-animation {
-  animation: FlipAnimation 1s;
-}
+//@keyframes FlipAnimation {
+//  from {transform: rotateY(0deg)}
+//  to {transform: rotateY(180deg)}
+//}
+//
+//.flip-animation {
+//  animation: FlipAnimation 1s;
+//}
 
 .card-wrapper,
 .card,
@@ -65,10 +63,10 @@
   transform: rotateY(0deg);
   background-color: #90a4ae; // blue grey 300
   color: rgba(#fff, .1);
-
-  &:hover {
-    box-shadow: 0 4px 2px -1px rgba(0, 0, 0, .2), 0 3px 2px 0 rgba(0, 0, 0, .14), 0 3px 4px 0 rgba(0, 0, 0, .12);
-  }
+  //
+  //&:hover {
+  //  box-shadow: 0 4px 2px -1px rgba(0, 0, 0, .2), 0 3px 2px 0 rgba(0, 0, 0, .14), 0 3px 4px 0 rgba(0, 0, 0, .12);
+  //}
 }
 
 .card__face {

@@ -7,6 +7,6 @@ import { Card } from './card.model'
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent {
-  @Input()
-  card: Card
+  @Input() card: Card
+  @Input() flipped: boolean
 }
