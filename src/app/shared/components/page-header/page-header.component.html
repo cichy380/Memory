@@ -1,3 +1,13 @@
-<header class="mat-toolbar-single-row page-header">
+<mat-toolbar class="page-header">
   <ng-content></ng-content>
-</header>
+  <div class="page-header__right">
+    <button mat-icon-button color="primary" aria-label="Toggle menu" [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>High score</button>
+      <button mat-menu-item>Settings</button>
+      <button mat-menu-item>Rules</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

@@ -1,5 +1,16 @@
+.page-header-title {
+}
+
 .page-header-title__heading {
-  display: inline-block;
+  font-size: 18px;
+  font-weight: 500;
   margin-bottom: 0;
-  margin-right: 6px;
+  line-height: 1;
+}
+
+.page-header-title__addons {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  opacity: .4;
 }

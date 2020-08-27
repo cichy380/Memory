@@ -37,18 +37,5 @@ $gutter: 30px;
 // main content
 
 .page-content {
-  padding-top: $gutter / 2;
   padding-bottom: $gutter / 2;
-}
-
-
-// page header
-
-.page-header {
-  background-color: $page-header-bg;
-}
-
-.page-header__addons {
-  opacity: .4;
-  white-space: nowrap;
 }

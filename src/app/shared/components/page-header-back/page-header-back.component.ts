@@ -17,6 +17,9 @@ export class PageHeaderBackComponent {
   }
 
   onBackClick() {
-    this.router.navigateByUrl(this.routerHistory.getLatestFrom(this.link) || this.link)
-  }
+    if (this.link === '/') {
+      this.router.navigateByUrl('/')
+    } else {
+      this.router.navigateByUrl(this.routerHistory.getLatestFrom(this.link) || this.link)
+    }  }
 }

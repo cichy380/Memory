@@ -1,9 +1,18 @@
-<div class="page-content game-content" *ngIf="(deck$ | async) as deck">
-  <div class="container" *ngIf="(flipped$ | async) as flipped">
-    <mat-grid-list [cols]="columns" rowHeight="1:1.25" gutterSize="16px" (window:resize)="onResize($event)">
-      <mat-grid-tile class="overflow-visible" *ngFor="let card of deck; let cardIndex = index">
-        <app-card [card]="card" [flipped]="flipped[cardIndex]" (click)="onClickCard(cardIndex, flipped[cardIndex])"></app-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+<div *ngIf="(deck$ | async) as deck">
+  <app-page-header>
+    <app-page-header-back [link]="'/'" ariaLabel="Back to homepage"></app-page-header-back>
+    <app-page-header-title [addons]="'Matched pairs: ' + matchedPairs + '/' + (deck.length / 2)">
+      Moves #{{ (round$ | async) }}
+    </app-page-header-title>
+  </app-page-header>
+
+  <div class="page-content game-content">
+    <div class="container" *ngIf="(flipped$ | async) as flipped">
+      <mat-grid-list [cols]="columns" rowHeight="1:1.25" gutterSize="16px" (window:resize)="onResize($event)">
+        <mat-grid-tile class="overflow-visible" *ngFor="let card of deck; let cardIndex = index">
+          <app-card [card]="card" [flipped]="flipped[cardIndex]" (click)="onClickCard(cardIndex, flipped[cardIndex])"></app-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
   </div>
 </div>
