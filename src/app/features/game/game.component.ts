@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store'
 import { Card } from './components/card/card.model'
 import { AppState } from '../../core/app-store/app-store.state'
 import { flipGameCard, readDeck, updateDeck } from './store/game.actions'
-import { selectGameDeck, selectGameFlipped, selectGameJustFlippedCardIdx } from './store/game.selectors'
+import { selectGameDeck, selectGameFlipped, selectGameJustFlippedCardIdx, selectGameMatched } from './store/game.selectors'
 
 
 @Component({
@@ -16,6 +16,7 @@ export class GameComponent implements OnInit, OnDestroy {
   public columns: number
   public deck$: Observable<Card[]>
   public flipped$: Observable<boolean[]>
+  public matched$: Observable<boolean[]>
   private justFlippedCardIdx$: Observable<number[]>
   private justFlippedCardIdx: number[]
   private subscription: Subscription
@@ -25,6 +26,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
     this.deck$ = store.pipe(select(selectGameDeck))
     this.flipped$ = store.pipe(select(selectGameFlipped))
+    this.matched$ = store.pipe(select(selectGameMatched))
     this.justFlippedCardIdx$ = store.pipe(select(selectGameJustFlippedCardIdx))
     this.justFlippedCardIdx = []
   }

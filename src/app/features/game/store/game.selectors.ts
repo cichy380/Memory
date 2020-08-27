@@ -14,6 +14,11 @@ export const selectGameFlipped = createSelector(
   (stateGame: GameState) => stateGame.flipped,
 )
 
+export const selectGameMatched = createSelector(
+  selectGame,
+  (stateGame: GameState) => stateGame.matched,
+)
+
 export const selectGameJustFlippedCardIdx = createSelector(
   selectGame,
   (stateGame: GameState) => stateGame.justFlippedIdx,

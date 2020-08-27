@@ -4,9 +4,9 @@ export interface ResponseModel {
   data: {
     deck?: Card[],
     flipped?: boolean[],
+    matched?: boolean[],
     round: number,
     justFlippedIdx?: number[],
-    // match?: boolean,
   }
   message?: string
 }

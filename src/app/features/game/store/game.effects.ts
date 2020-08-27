@@ -60,6 +60,7 @@ export class GameEffects {
         map((response: ResponseModel) => ({
           round: response.data.round,
           flipped: response.data.flipped,
+          matched: response.data.matched,
           justFlippedIdx: response.data.justFlippedIdx,
           type: flipGameCardSuccess.type,
         })),

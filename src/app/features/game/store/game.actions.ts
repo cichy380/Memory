@@ -14,5 +14,5 @@ export const updateDeckFail = createAction('[game] Update Deck FAIL')
 
 export const flipGameCard = createAction('[game] Flip Card', props<{ cardIndex: number }>())
 export const flipGameCardSuccess = createAction('[game] Flip Card Success',
-  props<{ round: number, flipped: boolean[], justFlippedIdx: number[] }>())
+  props<{ round: number, justFlippedIdx: number[], flipped: boolean[], matched: boolean[] }>())
 export const flipGameCardFail = createAction('[game] Flip Card FAIL')
