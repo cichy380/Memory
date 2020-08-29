@@ -1,9 +1,8 @@
 <div *ngIf="(deck$ | async) as deck">
   <app-page-header>
     <app-page-header-back [link]="'/'" ariaLabel="Back to homepage"></app-page-header-back>
-    <app-page-header-title [addons]="'Matched pairs: ' + matchedPairs + '/' + (deck.length / 2)">
-      Move #{{ (move$ | async) }}
-    </app-page-header-title>
+    <mat-icon class="opacity-5 mr-1">loop</mat-icon> #{{ (move$ | async) }}
+    <mat-icon class="opacity-5 ml-3 mr-1">emoji_events</mat-icon> {{ matchedPairs + '/' + (deck.length / 2) }}
   </app-page-header>
 
   <div class="page-content game-content">

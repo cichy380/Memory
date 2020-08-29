@@ -17,7 +17,6 @@ export enum CardSuits {
   'anchor',
   'pets',
   'attach_file',
-  'format_paint',
   'directions_boat',
   'directions_car',
   'directions_run',
@@ -26,6 +25,9 @@ export enum CardSuits {
   'local_gas_station',
   'local_phone',
   'wine_bar',
+  'flash_on',
+  'home',
+  'beach_access',
 }
 
 export enum CardColors {

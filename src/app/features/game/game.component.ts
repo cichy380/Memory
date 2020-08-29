@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Observable, Subscription } from 'rxjs'
+import { distinctUntilChanged } from 'rxjs/operators'
 import { select, Store } from '@ngrx/store'
 import { Card } from './components/card/card.model'
 import { AppState } from '../../core/app-store/app-store.state'
@@ -13,7 +14,6 @@ import {
   arraysEqual,
 } from './store/game.selectors'
 import { NotificationBarService } from '../../shared/services/notification-bar.service'
-import { distinctUntilChanged } from 'rxjs/operators'
 
 const MOVE_DELAY = 2000 // ms
 

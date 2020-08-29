@@ -56,6 +56,22 @@
   margin-right: 20px !important;
 }
 
+.ml-1 {
+  margin-left: 4px !important;
+}
+
+.ml-2 {
+  margin-left: 8px !important;
+}
+
+.ml-3 {
+  margin-left: 16px !important;
+}
+
+.ml-4 {
+  margin-left: 20px !important;
+}
+
 .pt-0 {
   padding-top: 0 !important;
 }
@@ -74,6 +90,10 @@
   bottom: 25px;
   right: 25px;
   z-index: 1010;
+}
+
+.opacity-5 {
+  opacity: .5 !important;
 }
 
 .squeeze {
