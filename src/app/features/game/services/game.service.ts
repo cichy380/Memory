@@ -3,35 +3,36 @@ import { Observable, of } from 'rxjs'
 import { Card, CardSuits, CardColors } from '../components/card/card.model'
 import { ResponseModel } from '../../../shared/models/response-model.model'
 
+const CARD_NUMBER = 12
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
-  private readonly cardNumber = 12
-  private deck: Card[] = []
+  private move: number
+  private deck: Card[]
   private flipped: boolean[]
   private matched: boolean[]
-  private round = 1
   private justFlippedIdx: number[] = []
 
-  constructor() {
-    this.flipped = Array(this.cardNumber).fill(false)
-    this.matched = Array(this.cardNumber).fill(false)
-  }
-
-  public fetchDeck(): Observable<ResponseModel> {
+  public initGame(): Observable<ResponseModel> {
     const shuffledSuits = shuffle(this.getAllAvailableSuit())
     const shuffledColors = shuffle(this.getAllAvailableColors())
 
-    for(let i = 0; i < (this.cardNumber / 2); i+=1) {
+    this.move = 1
+    this.deck = []
+    this.flipped = Array(CARD_NUMBER).fill(false)
+    this.matched = Array(CARD_NUMBER).fill(false)
+
+    for(let i = 0; i < (CARD_NUMBER / 2); i+=1) {
       this.deck.push(new Card(shuffledSuits[i], shuffledColors[i]))
       this.deck.push(new Card(shuffledSuits[i], shuffledColors[i]))
     }
 
     this.deck = shuffle(this.deck)
 
-    return this.createResponse('round', 'deck', 'flipped')
+    return this.createResponse('move', 'deck', 'flipped')
   }
 
   public flipCard(index: number): Observable<ResponseModel> {
@@ -44,18 +45,22 @@ export class GameService {
       }
     }
 
-    return this.createResponse('round', 'flipped', 'matched', 'justFlippedIdx')
+    return this.createResponse('move', 'flipped', 'matched', 'justFlippedIdx')
   }
 
-  public update(): Observable<ResponseModel> {
-    this.round += 1
+  public newMove(): Observable<ResponseModel> {
+    if (this.matched.some(i => !i)) {
+      this.move += 1
 
-    if (this.compareJustFlippedCards() === false) {
-      this.flipBackUnmatchedCards()
+      if (this.compareJustFlippedCards() === false) {
+        this.flipBackUnmatchedCards()
+      }
+    } else {
+      // TODO: Error response if next-move is impossible
     }
     this.justFlippedIdx = []
 
-    return this.createResponse('round', 'flipped', 'justFlippedIdx')
+    return this.createResponse('move', 'flipped', 'justFlippedIdx')
   }
 
   private compareJustFlippedCards(): boolean {

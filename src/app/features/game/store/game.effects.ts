@@ -4,15 +4,15 @@ import { catchError, map, mergeMap } from 'rxjs/operators'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 
 import {
-  flipGameCard,
-  flipGameCardFail,
-  flipGameCardSuccess,
-  readDeck,
-  readDeckFail,
-  readDeckSuccess,
-  updateDeck,
-  updateDeckSuccess,
-  updateDeckFail,
+  flipCard,
+  flipCardFail,
+  flipCardSuccess,
+  initGame,
+  initGameFail,
+  initGameSuccess,
+  nextMove,
+  nextMoveSuccess,
+  nextMoveFail,
 } from './game.actions'
 import { GameService } from '../services/game.service'
 import { ResponseModel } from '../../../shared/models/response-model.model'
@@ -25,46 +25,46 @@ export class GameEffects {
 
   loadDeck$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(readDeck),
-      mergeMap(() => this.service.fetchDeck().pipe(
+      ofType(initGame),
+      mergeMap(() => this.service.initGame().pipe(
         map((response: ResponseModel) => ({
-          round: response.data.round,
+          move: response.data.move,
           deck: response.data.deck,
           flipped: response.data.flipped,
-          type: readDeckSuccess.type,
+          type: initGameSuccess.type,
         })),
-        catchError(() => of({type: readDeckFail.type})),
+        catchError(() => of({type: initGameFail.type})),
       )),
     ),
   )
 
   updateDeck$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(updateDeck),
-      mergeMap(() => this.service.update().pipe(
+      ofType(nextMove),
+      mergeMap(() => this.service.newMove().pipe(
         map((response: ResponseModel) => ({
-          round: response.data.round,
+          move: response.data.move,
           flipped: response.data.flipped,
           justFlippedIdx: response.data.justFlippedIdx,
-          type: updateDeckSuccess.type,
+          type: nextMoveSuccess.type,
         })),
-        catchError(() => of({type: updateDeckFail.type})),
+        catchError(() => of({type: nextMoveFail.type})),
       )),
     ),
   )
 
   flipCard$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(flipGameCard),
+      ofType(flipCard),
       mergeMap(({cardIndex}) => this.service.flipCard(cardIndex).pipe(
         map((response: ResponseModel) => ({
-          round: response.data.round,
+          move: response.data.move,
           flipped: response.data.flipped,
           matched: response.data.matched,
           justFlippedIdx: response.data.justFlippedIdx,
-          type: flipGameCardSuccess.type,
+          type: flipCardSuccess.type,
         })),
-        catchError(() => of({type: flipGameCardFail.type})),
+        catchError(() => of({type: flipCardFail.type})),
       )),
     ),
   )

@@ -24,7 +24,7 @@ export const selectGameJustFlippedCardIdx = createSelector(
   (stateGame: GameState) => stateGame.justFlippedIdx,
 )
 
-export const selectGameRound = createSelector(
+export const selectGameMove = createSelector(
   selectGame,
-  (stateGame: GameState) => stateGame.round,
+  (stateGame: GameState) => stateGame.move,
 )

@@ -3,8 +3,10 @@ import { Observable, Subscription } from 'rxjs'
 import { select, Store } from '@ngrx/store'
 import { Card } from './components/card/card.model'
 import { AppState } from '../../core/app-store/app-store.state'
-import { flipGameCard, readDeck, updateDeck } from './store/game.actions'
-import { selectGameDeck, selectGameFlipped, selectGameJustFlippedCardIdx, selectGameMatched, selectGameRound } from './store/game.selectors'
+import { flipCard, initGame, nextMove } from './store/game.actions'
+import { selectGameDeck, selectGameFlipped, selectGameJustFlippedCardIdx, selectGameMatched, selectGameMove } from './store/game.selectors'
+
+const MOVE_DELAY = 2000 // ms
 
 
 @Component({
@@ -14,25 +16,26 @@ import { selectGameDeck, selectGameFlipped, selectGameJustFlippedCardIdx, select
 })
 export class GameComponent implements OnInit, OnDestroy {
   public columns: number
+  public round$: Observable<number>
   public deck$: Observable<Card[]>
   public flipped$: Observable<boolean[]>
   public matched$: Observable<boolean[]>
   public matchedPairs: number
-  public round$: Observable<number>
+  public flippingDisabled: boolean
+  public gameOver: boolean
   private justFlippedCardIdx$: Observable<number[]>
-  private justFlippedCardIdx: number[]
   private subscription: Subscription
 
   constructor(private store: Store<AppState>) {
     this.subscription = new Subscription()
-    store.dispatch(readDeck())
+    this.flippingDisabled = false
+    store.dispatch(initGame())
 
     this.deck$ = store.pipe(select(selectGameDeck))
     this.flipped$ = store.pipe(select(selectGameFlipped))
     this.matched$ = store.pipe(select(selectGameMatched))
-    this.round$ = store.pipe(select(selectGameRound))
+    this.round$ = store.pipe(select(selectGameMove)) // TODO: Rename round$ to move$
     this.justFlippedCardIdx$ = store.pipe(select(selectGameJustFlippedCardIdx))
-    this.justFlippedCardIdx = []
   }
 
   static getColumns(deviceWidth: number) {
@@ -50,8 +53,8 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   public onClickCard(cardIndex: number, cardFlipped: boolean) {
-    if (cardFlipped === false && this.justFlippedCardIdx.length < 2) {
-      this.store.dispatch(flipGameCard({cardIndex}))
+    if (cardFlipped === false && this.flippingDisabled === false) {
+      this.store.dispatch(flipCard({cardIndex}))
     }
   }
 
@@ -60,9 +63,11 @@ export class GameComponent implements OnInit, OnDestroy {
 
     this.subscription.add(
       this.justFlippedCardIdx$.subscribe(justFlippedCardIdx => {
-        this.justFlippedCardIdx = justFlippedCardIdx
         if (justFlippedCardIdx.length === 2) {
-          setTimeout(() => this.store.dispatch(updateDeck()), 2000)
+          this.flippingDisabled = true
+          setTimeout(() => this.store.dispatch(nextMove()), MOVE_DELAY) // TODO: Rename updateDeck() to newMove()
+        } else {
+          this.flippingDisabled = false
         }
       }),
     )

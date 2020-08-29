@@ -1,17 +1,17 @@
 import { createReducer, on } from '@ngrx/store'
 import { GameState, initialGameState } from './game.state'
-import { flipGameCardSuccess, readDeckSuccess, updateDeckSuccess } from './game.actions'
+import { flipCardSuccess, initGameSuccess, nextMoveSuccess } from './game.actions'
 
 
 export const gameReducer = createReducer(
   initialGameState,
-  on(readDeckSuccess, (state, {round, deck, flipped}) => (
-    {...state, deck, round, flipped}
+  on(initGameSuccess, (state, {move, deck, flipped}) => (
+    {...state, move, deck, flipped}
   )),
-  on(updateDeckSuccess, (state, {round, flipped, justFlippedIdx}) => (
-    {...state, round, flipped, justFlippedIdx}
+  on(nextMoveSuccess, (state, {move, flipped, justFlippedIdx}) => (
+    {...state, move, flipped, justFlippedIdx}
   )),
-  on(flipGameCardSuccess, (state: GameState, {round, justFlippedIdx, flipped, matched}) => (
-    {...state, round, justFlippedIdx, flipped, matched}
+  on(flipCardSuccess, (state: GameState, {move, justFlippedIdx, flipped, matched}) => (
+    {...state, move, justFlippedIdx, flipped, matched}
   )),
 )

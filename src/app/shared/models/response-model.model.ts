@@ -5,7 +5,7 @@ export interface ResponseModel {
     deck?: Card[],
     flipped?: boolean[],
     matched?: boolean[],
-    round: number,
+    move: number,
     justFlippedIdx?: number[],
   }
   message?: string
