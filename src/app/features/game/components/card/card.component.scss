@@ -9,6 +9,12 @@
 
 .card-wrapper {
   perspective: 1000px;
+  opacity: 1;
+  transition: opacity .3s ease-in-out;
+}
+
+.card-wrapper_disabled {
+  opacity: .5;
 }
 
 .card {

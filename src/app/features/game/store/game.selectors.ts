@@ -28,3 +28,7 @@ export const selectGameMove = createSelector(
   selectGame,
   (stateGame: GameState) => stateGame.move,
 )
+
+export function arraysEqual(arr1: boolean[], arr2: boolean[]) {
+  return arr1.toString() === arr2.toString()
+}
