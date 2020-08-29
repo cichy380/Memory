@@ -5,8 +5,8 @@ import { flipCardSuccess, initGameSuccess, nextMoveSuccess } from './game.action
 
 export const gameReducer = createReducer(
   initialGameState,
-  on(initGameSuccess, (state, {move, deck, flipped}) => (
-    {...state, move, deck, flipped}
+  on(initGameSuccess, (state, {move, deck, flipped, matched}) => (
+    {...state, move, deck, flipped, matched}
   )),
   on(nextMoveSuccess, (state, {move, flipped, justFlippedIdx}) => (
     {...state, move, flipped, justFlippedIdx}

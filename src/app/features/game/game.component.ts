@@ -5,6 +5,7 @@ import { Card } from './components/card/card.model'
 import { AppState } from '../../core/app-store/app-store.state'
 import { flipCard, initGame, nextMove } from './store/game.actions'
 import { selectGameDeck, selectGameFlipped, selectGameJustFlippedCardIdx, selectGameMatched, selectGameMove } from './store/game.selectors'
+import { NotificationBarService } from '../../shared/services/notification-bar.service'
 
 const MOVE_DELAY = 2000 // ms
 
@@ -26,7 +27,7 @@ export class GameComponent implements OnInit, OnDestroy {
   private justFlippedCardIdx$: Observable<number[]>
   private subscription: Subscription
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private notification: NotificationBarService) {
     this.subscription = new Subscription()
     this.flippingDisabled = false
     store.dispatch(initGame())
@@ -34,7 +35,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.deck$ = store.pipe(select(selectGameDeck))
     this.flipped$ = store.pipe(select(selectGameFlipped))
     this.matched$ = store.pipe(select(selectGameMatched))
-    this.round$ = store.pipe(select(selectGameMove)) // TODO: Rename round$ to move$
+    this.round$ = store.pipe(select(selectGameMove))
     this.justFlippedCardIdx$ = store.pipe(select(selectGameJustFlippedCardIdx))
   }
 
@@ -65,7 +66,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.justFlippedCardIdx$.subscribe(justFlippedCardIdx => {
         if (justFlippedCardIdx.length === 2) {
           this.flippingDisabled = true
-          setTimeout(() => this.store.dispatch(nextMove()), MOVE_DELAY) // TODO: Rename updateDeck() to newMove()
+          setTimeout(() => this.store.dispatch(nextMove()), MOVE_DELAY)
         } else {
           this.flippingDisabled = false
         }
@@ -74,7 +75,10 @@ export class GameComponent implements OnInit, OnDestroy {
 
     this.subscription.add(
       this.matched$.subscribe(matched => {
-        this.matchedPairs = (matched.filter(item => item).length / 2)
+        this.matchedPairs = (matched.filter(i => i).length / 2)
+        if (matched.every(i => i)) {
+          setTimeout(() => this.notification.showSuccess('All pairs matched!', 2600), 550)
+        }
       }),
     )
   }

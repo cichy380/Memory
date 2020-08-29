@@ -23,7 +23,7 @@ export class GameEffects {
   constructor(private actions$: Actions, private service: GameService) {
   }
 
-  loadDeck$ = createEffect(() =>
+  init$ = createEffect(() =>
     this.actions$.pipe(
       ofType(initGame),
       mergeMap(() => this.service.initGame().pipe(
@@ -31,6 +31,7 @@ export class GameEffects {
           move: response.data.move,
           deck: response.data.deck,
           flipped: response.data.flipped,
+          matched: response.data.matched,
           type: initGameSuccess.type,
         })),
         catchError(() => of({type: initGameFail.type})),
@@ -38,7 +39,7 @@ export class GameEffects {
     ),
   )
 
-  updateDeck$ = createEffect(() =>
+  next$ = createEffect(() =>
     this.actions$.pipe(
       ofType(nextMove),
       mergeMap(() => this.service.newMove().pipe(
@@ -53,7 +54,7 @@ export class GameEffects {
     ),
   )
 
-  flipCard$ = createEffect(() =>
+  flip$ = createEffect(() =>
     this.actions$.pipe(
       ofType(flipCard),
       mergeMap(({cardIndex}) => this.service.flipCard(cardIndex).pipe(

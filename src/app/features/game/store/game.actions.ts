@@ -4,7 +4,7 @@ import { Card } from '../components/card/card.model'
 
 export const initGame = createAction('[game] Initialize Game')
 export const initGameSuccess = createAction('[game] Initialize Game Success',
-  props<{ move: number, deck: Card[], flipped: boolean[] }>())
+  props<{ move: number, deck: Card[], flipped: boolean[], matched: boolean[] }>())
 export const initGameFail = createAction('[game] Initialize Game FAIL')
 
 export const nextMove = createAction('[game] Next Move')

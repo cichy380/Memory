@@ -7,10 +7,10 @@ export class Card {
 
 export enum CardSuits {
   'alarm',
-  'favorite_border',
-  'lightbulb_outline',
+  'favorite',
+  'star',
   'insert_emoticon',
-  'cloud_queue',
+  'cloud',
   'directions_bike',
   'flight',
   'notifications_none',

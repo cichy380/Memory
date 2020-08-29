@@ -32,7 +32,7 @@ export class GameService {
 
     this.deck = shuffle(this.deck)
 
-    return this.createResponse('move', 'deck', 'flipped')
+    return this.createResponse('move', 'deck', 'flipped', 'matched')
   }
 
   public flipCard(index: number): Observable<ResponseModel> {
