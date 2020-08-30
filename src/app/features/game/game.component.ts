@@ -15,7 +15,7 @@ import {
 } from './store/game.selectors'
 import { NotificationBarService } from '../../shared/services/notification-bar.service'
 
-const MOVE_DELAY = 2000 // ms
+const MOVE_DELAY = 3000 // ms
 
 
 @Component({
@@ -31,6 +31,8 @@ export class GameComponent implements OnInit, OnDestroy {
   public matched$: Observable<boolean[]>
   public matchedPairs: number
   public flippingDisabled: boolean
+  public moveDelay = MOVE_DELAY // ms
+  public timeForRemember: boolean
   public gameOver: boolean
   private justFlippedCardIdx$: Observable<number[]>
   private subscription: Subscription
@@ -45,7 +47,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.deck$ = store.pipe(select(selectGameDeck))
     this.flipped$ = store.pipe(select(selectGameFlipped), distinctUntilChanged((p, n) => arraysEqual(p, n)))
     this.matched$ = store.pipe(select(selectGameMatched), distinctUntilChanged((p, n) => arraysEqual(p, n)))
-    this.move$ = store.pipe(select(selectGameMove))
+    this.move$ = store.pipe(select(selectGameMove), distinctUntilChanged())
     this.justFlippedCardIdx$ = store.pipe(select(selectGameJustFlippedCardIdx))
   }
 
@@ -74,7 +76,11 @@ export class GameComponent implements OnInit, OnDestroy {
       this.justFlippedCardIdx$.subscribe(justFlippedCardIdx => {
         if (justFlippedCardIdx.length === 2) {
           this.flippingDisabled = true
-          this.delayTimeout = setTimeout(() => this.store.dispatch(nextMove()), MOVE_DELAY)
+          this.timeForRemember = true
+          this.delayTimeout = setTimeout(() => {
+            this.store.dispatch(nextMove())
+            this.timeForRemember = false
+          }, MOVE_DELAY)
         } else {
           this.flippingDisabled = false
         }
@@ -86,6 +92,7 @@ export class GameComponent implements OnInit, OnDestroy {
         if (matched.every(i => i)) {
           setTimeout(() => this.notification.showSuccess('All pairs matched!', 2600), 550)
         } else if (this.delayTimeout) {
+          this.timeForRemember = false
           setTimeout(() => {
             clearTimeout(this.delayTimeout)
             this.store.dispatch(nextMove())

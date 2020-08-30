@@ -114,9 +114,21 @@
   color: $color-primary !important;
 }
 
+.bg-primary {
+  background-color: $color-primary !important;
+}
+
 .text-accent {
   color: $color-accent !important;
   fill: $color-accent !important;
+}
+
+.bg-accent {
+  background-color: $color-accent !important;
+}
+
+.bg-body {
+  background-color: $body-bg !important;
 }
 
 .overflow-visible {

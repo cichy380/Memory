@@ -11,6 +11,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { PageHeaderBackComponent } from './components/page-header-back/page-header-back.component'
 import { PageHeaderTitleComponent } from './components/page-header-title/page-header-title.component'
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component'
+import { PieTimerComponent } from './components/pie-timer/pie-timer.component'
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     PageHeaderComponent,
     PageHeaderBackComponent,
     PageHeaderTitleComponent,
+    PieTimerComponent,
   ],
   entryComponents: [
     NotificationBarComponent,
@@ -35,14 +37,15 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     ...sharedInterceptorProviders,
     UnsavedChangesGuard,
   ],
-  exports: [
-    MaterialModule,
-    BackButtonDirective,
-    InputDebounceDirective,
-    PageHeaderComponent,
-    PageHeaderBackComponent,
-    PageHeaderTitleComponent,
-  ],
+    exports: [
+        MaterialModule,
+        BackButtonDirective,
+        InputDebounceDirective,
+        PageHeaderComponent,
+        PageHeaderBackComponent,
+        PageHeaderTitleComponent,
+        PieTimerComponent,
+    ],
 })
 
 export class SharedModule {

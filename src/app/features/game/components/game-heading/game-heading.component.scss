@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.game-heading-icon {
+  opacity: .33;
+  transition: opacity .25s ease-in-out, color .25s ease-in-out;
+}
+
+.game-heading-icon_active {
+  opacity: 1;
+  color: #fdd835;
+}
+
+.game-heading-text {
+  font-weight: 500;
+  font-size: 16px;
+  transition: color .25s ease-in-out;
+}
+
+.game-heading-text_active {
+  color: #fbc02d;
+}
+
+
+

@@ -1,0 +1,72 @@
+// Pie timer (Hugo Giraudel)
+// https://codepen.io/HugoGiraudel/pen/BHEwo
+
+$size: 24px;
+
+.pie-timer {
+  width: $size;
+  height: $size;
+  position: relative;
+  margin: 40px auto;
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+
+.pie {
+  width: 50%;
+  height: 100%;
+  transform-origin: 100% 50%;
+  position: absolute;
+}
+
+.spinner {
+  border-radius: 100% 0 0 100% / 50% 0 0 50%;
+  z-index: 200;
+  border-right: 0;
+  animation: rota 0s linear 1;
+}
+
+.filler {
+  border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+  left: 50%;
+  opacity: 0;
+  z-index: 100;
+  animation: opa 0s steps(1, end) 1 reverse;
+  border-left: 0;
+}
+
+.mask {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  background: inherit;
+  opacity: 1;
+  z-index: 300;
+  animation: opa 0s steps(1, end) 1;
+}
+
+
+@keyframes rota {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes opa {
+  0% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,5 @@
+<mat-icon class="game-heading-icon mr-1">loop</mat-icon>
+<span class="game-heading-text mr-3">#{{ move }}</span>
+
+<mat-icon class="game-heading-icon mr-1" [ngClass]="{'game-heading-icon_active': justMatched && matched}">emoji_events</mat-icon>
+<span class="game-heading-text mr-3" [ngClass]="{'game-heading-text_active': justMatched && matched}">{{ matched + '/' + (cards / 2) }}</span>
