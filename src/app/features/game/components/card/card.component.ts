@@ -10,5 +10,6 @@ import { Card } from './card.model'
 export class CardComponent {
   @Input() card: Card
   @Input() flipped: boolean
+  @Input() matched: boolean
   @Input() disabled: boolean
 }

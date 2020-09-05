@@ -31,6 +31,7 @@ export class GameComponent implements OnInit, OnDestroy {
   public deck$: Observable<Card[]>
   public flipped$: Observable<boolean[]>
   public matched$: Observable<boolean[]>
+  public matched: boolean[]
   public matchedPairs: number
   public flippingDisabled: boolean
   public moveDelay = MOVE_DELAY // ms
@@ -90,6 +91,7 @@ export class GameComponent implements OnInit, OnDestroy {
     )
     this.subscription.add(
       this.matched$.subscribe(matched => {
+        this.matched = matched
         this.matchedPairs = (matched.filter(i => i).length / 2)
         if (matched.every(i => i)) {
           setTimeout(() => this.notification.showSuccess('All pairs matched!', 2600), 550)

@@ -1,12 +1,14 @@
-<div class="card-wrapper" [ngClass]="{'card-wrapper_disabled': disabled && !flipped}">
-  <div class="card flipper" [ngClass]="{'card_flipped': flipped}">
-    <mat-card class="card__back" matRipple [matRippleDisabled]="disabled || flipped">
-      <mat-icon class="card__icon">lightbulb_outline</mat-icon>
-    </mat-card>
-    <mat-card class="card__face">
-      <mat-icon [className]="'card__icon card-color_' + card.color">
-        {{ card.suit }}
-      </mat-icon>
-    </mat-card>
+<div class="card-container" [ngClass]="{'card-container_matched': matched}">
+  <div class="card-wrapper" [ngClass]="{'card-wrapper_disabled': disabled && !flipped}">
+    <div class="card" [ngClass]="{'card_flipped': flipped}">
+      <mat-card class="card__back" matRipple [matRippleDisabled]="disabled || flipped">
+        <mat-icon class="card__icon">lightbulb_outline</mat-icon>
+      </mat-card>
+      <mat-card class="card__face">
+        <mat-icon [className]="'card__icon card-color_' + card.color">
+          {{ card.suit }}
+        </mat-icon>
+      </mat-card>
+    </div>
   </div>
 </div>

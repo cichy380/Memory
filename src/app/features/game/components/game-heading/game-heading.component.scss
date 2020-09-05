@@ -5,7 +5,7 @@
 
 .game-heading-icon {
   opacity: .33;
-  transition: opacity .25s ease-in-out, color .25s ease-in-out;
+  transition: opacity .25s ease .3s, color .25s ease .3s;
 }
 
 .game-heading-icon_active {
@@ -16,7 +16,7 @@
 .game-heading-text {
   font-weight: 500;
   font-size: 16px;
-  transition: color .25s ease-in-out;
+  transition: color .25s ease .3s;
 }
 
 .game-heading-text_active {

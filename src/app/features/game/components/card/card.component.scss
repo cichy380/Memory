@@ -10,7 +10,7 @@
 .card-wrapper {
   perspective: 1000px;
   opacity: 1;
-  transition: opacity .3s ease-in-out;
+  transition: opacity .3s;
 }
 
 .card-wrapper_disabled {
@@ -21,7 +21,7 @@
   transform-style: preserve-3d;
   position: relative;
   transform: rotateY(0deg);
-  transition: transform .3s ease-in-out;
+  transition: transform .3s;
 }
 
 .card_flipped {
@@ -29,15 +29,17 @@
   transition-duration: .6s;
 }
 
-//@keyframes FlipAnimation {
-//  from {transform: rotateY(0deg)}
-//  to {transform: rotateY(180deg)}
-//}
-//
-//.flip-animation {
-//  animation: FlipAnimation 1s;
-//}
+.card-container_matched {
+  animation: ScaleAnimation .5s ease .3s;
+}
 
+@keyframes ScaleAnimation {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.2);}
+  100% {transform: scale(1);}
+}
+
+.card-container,
 .card-wrapper,
 .card,
 .card__face,
@@ -69,10 +71,6 @@
   transform: rotateY(0deg);
   background-color: #90a4ae; // blue grey 300
   color: rgba(#fff, .1);
-  //
-  //&:hover {
-  //  box-shadow: 0 4px 2px -1px rgba(0, 0, 0, .2), 0 3px 2px 0 rgba(0, 0, 0, .14), 0 3px 4px 0 rgba(0, 0, 0, .12);
-  //}
 }
 
 .card__face {
