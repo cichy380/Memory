@@ -1,6 +1,6 @@
 <div class="card-wrapper" [ngClass]="{'card-wrapper_disabled': disabled && !flipped}">
   <div class="card flipper" [ngClass]="{'card_flipped': flipped}">
-    <mat-card class="card__back">
+    <mat-card class="card__back" matRipple [matRippleDisabled]="disabled || flipped">
       <mat-icon class="card__icon">lightbulb_outline</mat-icon>
     </mat-card>
     <mat-card class="card__face">
