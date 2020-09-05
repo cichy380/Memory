@@ -14,6 +14,7 @@ import {
   arraysEqual,
 } from './store/game.selectors'
 import { NotificationBarService } from '../../shared/services/notification-bar.service'
+import { listAnimation } from './animations/list.animation'
 
 const MOVE_DELAY = 3000 // ms
 
@@ -22,6 +23,7 @@ const MOVE_DELAY = 3000 // ms
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
+  animations: [listAnimation],
 })
 export class GameComponent implements OnInit, OnDestroy {
   public columns: number
