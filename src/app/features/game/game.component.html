@@ -6,12 +6,12 @@
   </app-page-header>
 
   <div class="page-content game-content">
-    <div class="container" *ngIf="(flipped$ | async) as flipped">
+    <div class="container">
       <mat-grid-list [cols]="columns" rowHeight="1:1.2" gutterSize="16px" (window:resize)="onResize($event)"
                      [@listAnimation]="deck.length">
-        <mat-grid-tile class="overflow-visible" *ngFor="let card of deck; let cardIndex = index">
-          <app-card [card]="card" [flipped]="flipped[cardIndex]" [matched]="matched[cardIndex]" [disabled]="flippingDisabled"
-                    (click)="onClickCard(cardIndex, flipped[cardIndex])"></app-card>
+        <mat-grid-tile class="overflow-visible" *ngFor="let card of deck; let cardIdx = index">
+          <app-card [card]="card" [flipped]="flipped[cardIdx]" [matched]="matched[cardIdx]" [disabled]="flippingDisabled"
+                    (click)="onClickCard(cardIdx)"></app-card>
         </mat-grid-tile>
       </mat-grid-list>
     </div>

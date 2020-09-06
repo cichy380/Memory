@@ -15,6 +15,7 @@ import {
 } from './store/game.selectors'
 import { NotificationBarService } from '../../shared/services/notification-bar.service'
 import { listAnimation } from './animations/list.animation'
+import { playSound } from '../../shared/services/play-sound.function'
 
 const MOVE_DELAY = 3000 // ms
 
@@ -30,6 +31,7 @@ export class GameComponent implements OnInit, OnDestroy {
   public move$: Observable<number>
   public deck$: Observable<Card[]>
   public flipped$: Observable<boolean[]>
+  public flipped: boolean[]
   public matched$: Observable<boolean[]>
   public matched: boolean[]
   public matchedPairs: number
@@ -68,8 +70,8 @@ export class GameComponent implements OnInit, OnDestroy {
     return columnNumber
   }
 
-  public onClickCard(cardIndex: number, cardFlipped: boolean) {
-    if (cardFlipped === false && this.flippingDisabled === false) {
+  public onClickCard(cardIndex: number) {
+    if (this.flipped[cardIndex] === false && this.flippingDisabled === false) {
       this.store.dispatch(flipCard({cardIndex}))
     }
   }
@@ -90,11 +92,26 @@ export class GameComponent implements OnInit, OnDestroy {
       }),
     )
     this.subscription.add(
+      this.flipped$.subscribe(flipped => {
+        if (this.flipped !== undefined) {
+          playSound('card.wav')
+        }
+        this.flipped = flipped
+      }),
+    )
+    this.subscription.add(
       this.matched$.subscribe(matched => {
+        if (this.matched !== undefined) {
+          setTimeout(() => playSound('success.flac'), 333)
+        }
         this.matched = matched
         this.matchedPairs = (matched.filter(i => i).length / 2)
+
         if (matched.every(i => i)) {
-          setTimeout(() => this.notification.showSuccess('All pairs matched!', 2600), 550)
+          setTimeout(() => {
+            playSound('win.wav')
+            this.notification.showSuccess('All pairs matched!', 2600)
+          }, 600)
         } else if (this.delayTimeout) {
           this.timeForRemember = false
           setTimeout(() => {
