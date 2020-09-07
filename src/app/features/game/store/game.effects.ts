@@ -32,6 +32,7 @@ export class GameEffects {
           deck: response.data.deck,
           flipped: response.data.flipped,
           matched: response.data.matched,
+          justFlippedIdx: response.data.justFlippedIdx,
           type: initGameSuccess.type,
         })),
         catchError(() => of({type: initGameFail.type})),

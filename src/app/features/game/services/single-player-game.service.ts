@@ -14,7 +14,7 @@ export class SinglePlayerGameService {
   private deck: Card[]
   private flipped: boolean[]
   private matched: boolean[]
-  private justFlippedIdx: number[] = []
+  private justFlippedIdx: number[]
 
   public initGame(): Observable<ResponseModel> {
     const shuffledSuits = shuffle(this.getAllAvailableSuit())
@@ -24,6 +24,7 @@ export class SinglePlayerGameService {
     this.deck = []
     this.flipped = Array(CARD_NUMBER).fill(false)
     this.matched = Array(CARD_NUMBER).fill(false)
+    this.justFlippedIdx = []
 
     for(let i = 0; i < (CARD_NUMBER / 2); i+=1) {
       this.deck.push(new Card(shuffledSuits[i], shuffledColors[i]))
@@ -32,7 +33,7 @@ export class SinglePlayerGameService {
 
     this.deck = shuffle(this.deck)
 
-    return this.createResponse('move', 'deck', 'flipped', 'matched')
+    return this.createResponse('move', 'deck', 'flipped', 'matched', 'justFlippedIdx')
   }
 
   public flipCard(index: number): Observable<ResponseModel> {
