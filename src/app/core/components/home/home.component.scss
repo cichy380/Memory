@@ -13,13 +13,20 @@
 .home-highlight {
   flex-grow: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.home-highlight__card {
-  padding: 48px 20px;
-  background: #fff;
-  border: 2px solid rgba(0, 0, 0, .1);
-  border-radius: 6px;
+.home-highlight__icon {
+  width: 110px;
+  height: 110px;
+  margin-bottom: 10px;
+  font-size: 110px;
+  transform: rotate(15deg);
+}
+
+.home-highlight__title {
+  font-size: 34px;
+  font-weight: 600;
 }
