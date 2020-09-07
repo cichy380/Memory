@@ -14,13 +14,13 @@ import {
   nextMoveSuccess,
   nextMoveFail,
 } from './game.actions'
-import { GameService } from '../services/game.service'
+import { SinglePlayerGameService } from '../services/single-player-game.service'
 import { ResponseModel } from '../../../shared/models/response-model.model'
 
 
 @Injectable()
 export class GameEffects {
-  constructor(private actions$: Actions, private service: GameService) {
+  constructor(private actions$: Actions, private service: SinglePlayerGameService) {
   }
 
   init$ = createEffect(() =>

@@ -9,7 +9,7 @@ const CARD_NUMBER = 12
 @Injectable({
   providedIn: 'root',
 })
-export class GameService {
+export class SinglePlayerGameService {
   private move: number
   private deck: Card[]
   private flipped: boolean[]
