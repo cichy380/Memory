@@ -5,8 +5,7 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>High score</button>
-      <button mat-menu-item>Settings</button>
+      <button mat-menu-item (click)="onNavBtnClick('/game/new')">Start new game</button>
       <button mat-menu-item>Rules</button>
     </mat-menu>
   </div>

@@ -6,6 +6,7 @@ import { GameRoutingModule } from './game-routing.module'
 import { GameComponent } from './game.component'
 import { CardComponent } from './components/card/card.component'
 import { GameHeadingComponent } from './components/game-heading/game-heading.component'
+import { GameResolverService } from './services/game-resolver.service'
 
 
 @NgModule({
@@ -18,6 +19,9 @@ import { GameHeadingComponent } from './components/game-heading/game-heading.com
     CommonModule,
     SharedModule,
     GameRoutingModule,
+  ],
+  providers: [
+    GameResolverService,
   ],
 })
 export class GameModule {

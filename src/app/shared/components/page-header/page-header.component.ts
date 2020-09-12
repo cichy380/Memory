@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { Router } from '@angular/router'
 
 
 @Component({
@@ -7,4 +8,10 @@ import { Component } from '@angular/core'
   styleUrls: ['./page-header.component.scss'],
 })
 export class PageHeaderComponent {
+  constructor(private router: Router) {
+  }
+
+  public onNavBtnClick(url: string) {
+    this.router.navigateByUrl(url)
+  }
 }

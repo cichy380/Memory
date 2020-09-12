@@ -37,15 +37,15 @@ import { PieTimerComponent } from './components/pie-timer/pie-timer.component'
     ...sharedInterceptorProviders,
     UnsavedChangesGuard,
   ],
-    exports: [
-        MaterialModule,
-        BackButtonDirective,
-        InputDebounceDirective,
-        PageHeaderComponent,
-        PageHeaderBackComponent,
-        PageHeaderTitleComponent,
-        PieTimerComponent,
-    ],
+  exports: [
+    MaterialModule,
+    BackButtonDirective,
+    InputDebounceDirective,
+    PageHeaderComponent,
+    PageHeaderBackComponent,
+    PageHeaderTitleComponent,
+    PieTimerComponent,
+  ],
 })
 
 export class SharedModule {

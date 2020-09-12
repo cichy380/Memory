@@ -21,5 +21,6 @@ export class PageHeaderBackComponent {
       this.router.navigateByUrl('/')
     } else {
       this.router.navigateByUrl(this.routerHistory.getLatestFrom(this.link) || this.link)
-    }  }
+    }
+  }
 }

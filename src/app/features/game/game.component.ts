@@ -4,7 +4,7 @@ import { distinctUntilChanged } from 'rxjs/operators'
 import { select, Store } from '@ngrx/store'
 import { Card } from './components/card/card.model'
 import { AppState } from '../../core/app-store/app-store.state'
-import { flipCard, initGame, nextMove } from './store/game.actions'
+import { flipCard, nextMove } from './store/game.actions'
 import {
   selectGameDeck,
   selectGameFlipped,
@@ -47,7 +47,6 @@ export class GameComponent implements OnInit, OnDestroy {
     this.columns = GameComponent.getColumns(window.innerWidth)
     this.subscription = new Subscription()
     this.flippingDisabled = false
-    store.dispatch(initGame())
 
     this.deck$ = store.pipe(select(selectGameDeck))
     this.flipped$ = store.pipe(select(selectGameFlipped), distinctUntilChanged((p, n) => arraysEqual(p, n)))
@@ -76,6 +75,23 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
+  private onMatchJustFlippedCard() {
+    setTimeout(() => playSound('success.flac'), 333)
+
+    if (this.matched.every(i => i)) {
+      setTimeout(() => {
+        playSound('win.wav')
+        this.notification.showSuccess('All pairs matched!', 2600)
+      }, 600)
+    } else {
+      this.timeForRemember = false
+      setTimeout(() => {
+        clearTimeout(this.delayTimeout)
+        this.store.dispatch(nextMove())
+      }, 500)
+    }
+  }
+
   ngOnInit(): void {
     this.subscription.add(
       this.justFlippedCardIdx$.subscribe(justFlippedCardIdx => {
@@ -101,23 +117,11 @@ export class GameComponent implements OnInit, OnDestroy {
     )
     this.subscription.add(
       this.matched$.subscribe(matched => {
-        if (this.matched !== undefined) {
-          setTimeout(() => playSound('success.flac'), 333)
-        }
         this.matched = matched
         this.matchedPairs = (matched.filter(i => i).length / 2)
 
-        if (matched.every(i => i)) {
-          setTimeout(() => {
-            playSound('win.wav')
-            this.notification.showSuccess('All pairs matched!', 2600)
-          }, 600)
-        } else if (this.delayTimeout) {
-          this.timeForRemember = false
-          setTimeout(() => {
-            clearTimeout(this.delayTimeout)
-            this.store.dispatch(nextMove())
-          }, 500)
+        if (matched.some(i => i)) {
+          this.onMatchJustFlippedCard()
         }
       }),
     )
