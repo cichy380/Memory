@@ -15,7 +15,7 @@ import {
 } from './store/game.selectors'
 import { NotificationBarService } from '../../shared/services/notification-bar.service'
 import { listAnimation } from './animations/list.animation'
-import { playSound } from '../../shared/services/play-sound.function'
+import { SoundService } from './services/sound.service'
 
 const MOVE_DELAY = 3000 // ms
 
@@ -24,6 +24,7 @@ const MOVE_DELAY = 3000 // ms
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
+  providers: [SoundService],
   animations: [listAnimation],
 })
 export class GameComponent implements OnInit, OnDestroy {
@@ -43,7 +44,7 @@ export class GameComponent implements OnInit, OnDestroy {
   private subscription: Subscription
   private delayTimeout
 
-  constructor(private store: Store<AppState>, private notification: NotificationBarService) {
+  constructor(private store: Store<AppState>, private notification: NotificationBarService, private sound: SoundService) {
     this.columns = GameComponent.getColumns(window.innerWidth)
     this.subscription = new Subscription()
     this.flippingDisabled = false
@@ -76,11 +77,11 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private onMatchJustFlippedCard() {
-    setTimeout(() => playSound('success.flac'), 333)
+    setTimeout(() => this.sound.play('success.flac'), 333)
 
     if (this.matched.every(i => i)) {
       setTimeout(() => {
-        playSound('win.wav')
+        this.sound.play('win.wav')
         this.notification.showSuccess('All pairs matched!', 2600)
       }, 600)
     } else {
@@ -93,6 +94,8 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.sound.load(['card.wav', 'success.flac', 'win.wav'])
+
     this.subscription.add(
       this.justFlippedCardIdx$.subscribe(justFlippedCardIdx => {
         if (justFlippedCardIdx.length === 2) {
@@ -101,6 +104,7 @@ export class GameComponent implements OnInit, OnDestroy {
           this.delayTimeout = setTimeout(() => {
             this.store.dispatch(nextMove())
             this.timeForRemember = false
+            this.sound.play('card.wav')
           }, MOVE_DELAY)
         } else {
           this.flippingDisabled = false
@@ -109,8 +113,8 @@ export class GameComponent implements OnInit, OnDestroy {
     )
     this.subscription.add(
       this.flipped$.subscribe(flipped => {
-        if (this.flipped !== undefined) {
-          playSound('card.wav')
+        if (flipped.some(i => i)) {
+          this.sound.play('card.wav')
         }
         this.flipped = flipped
       }),
