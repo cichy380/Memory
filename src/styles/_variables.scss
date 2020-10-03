@@ -47,7 +47,7 @@ $app-warn: mat-palette($mat-red);
 
 $color-primary: map-get($app-primary, 500);
 $color-accent: map-get($app-accent, 500);
-$color-success: map-get(mat-palette($mat-green), 500);
+$color-success: map-get($mat-green, 500);
 $color-danger: map-get($app-warn, 500);
 
 $link-color: map-get($app-primary, 500);
@@ -61,16 +61,17 @@ $page-header-bg: map-get($app-primary, 50);
 
 $card-colors: ();
 $card-colors: map-merge((
-  "red": #e53935,
-  "pink": #e91e63,
-  "purple": #ab47bc,
-  "indigo": #5c6bc0,
-  "blue": #1976d2,
-  "cyan": #00838f,
-  "teal": #00796b,
-  "green": #388e3c,
-  "orange": #f57c00,
-  "brown": #795548,
+  "red": map-get($mat-red, 500),
+  "pink": map-get($mat-pink, 400),
+  "purple": map-get($mat-purple, 400),
+  "indigo": map-get($mat-indigo, 500),
+  "blue": map-get($mat-blue, 500),
+  "cyan": map-get($mat-cyan, 600),
+  "teal": map-get($mat-teal, 600),
+  "green": map-get($mat-green, 500),
+  "amber": map-get($mat-amber, 600),
+  "orange": map-get($mat-deep-orange, 500),
+  "brown": map-get($mat-brown, 500),
 ), $card-colors);
 
 
