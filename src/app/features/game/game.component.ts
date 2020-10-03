@@ -104,7 +104,6 @@ export class GameComponent implements OnInit, OnDestroy {
           this.delayTimeout = setTimeout(() => {
             this.store.dispatch(nextMove())
             this.timeForRemember = false
-            this.sound.play('card.wav')
           }, MOVE_DELAY)
         } else {
           this.flippingDisabled = false
@@ -112,12 +111,7 @@ export class GameComponent implements OnInit, OnDestroy {
       }),
     )
     this.subscription.add(
-      this.flipped$.subscribe(flipped => {
-        if (flipped.some(i => i)) {
-          this.sound.play('card.wav')
-        }
-        this.flipped = flipped
-      }),
+      this.flipped$.subscribe(flipped => this.flipped = flipped),
     )
     this.subscription.add(
       this.matched$.subscribe(matched => {
