@@ -29,17 +29,6 @@
   transition-duration: .6s;
 }
 
-.card-container_matched {
-  animation: ScaleAnimation .5s ease .3s;
-}
-
-@keyframes ScaleAnimation {
-  0% {transform: scale(1);}
-  50% {transform: scale(1.2);}
-  100% {transform: scale(1);}
-}
-
-.card-container,
 .card-wrapper,
 .card,
 .card__face,

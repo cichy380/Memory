@@ -11,7 +11,6 @@ import { SoundService } from '../../services/sound.service'
 export class CardComponent {
   public isDisabled: boolean
   public isFlipped: boolean
-  public isMatched: boolean
 
   @Input() card: Card
   @Input()
@@ -20,14 +19,10 @@ export class CardComponent {
   }
   @Input()
   set flipped(value: boolean) {
-    if (this.isFlipped !== undefined) {
+    this.isFlipped = value
+    if (value === true) {
       this.sound.play('card.wav')
     }
-    this.isFlipped = value
-  }
-  @Input()
-  set matched(value: boolean) {
-    this.isMatched = value
   }
 
   constructor(private sound: SoundService) {

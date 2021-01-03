@@ -10,7 +10,9 @@
       <mat-grid-list [cols]="columns" rowHeight="1:1.2" gutterSize="16px" (window:resize)="onResize($event)"
                      [@listAnimation]="deck.length">
         <mat-grid-tile class="overflow-visible" *ngFor="let card of deck; let cardIdx = index">
-          <app-card [card]="card" [flipped]="flipped[cardIdx]" [matched]="matched[cardIdx]" [disabled]="flippingDisabled"
+          <app-card [card]="card" [flipped]="flipped[cardIdx]"
+                    [ngClass]="{'game__card-matched': matched[cardIdx]}"
+                    [disabled]="flippingDisabled"
                     (click)="onClickCard(cardIdx)"></app-card>
         </mat-grid-tile>
       </mat-grid-list>

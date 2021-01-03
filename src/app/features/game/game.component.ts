@@ -42,9 +42,10 @@ export class GameComponent implements OnInit, OnDestroy {
   public gameOver: boolean
   private justFlippedCardIdx$: Observable<number[]>
   private subscription: Subscription
-  private delayTimeout
+  private delayTimeoutId: number
 
   constructor(private store: Store<AppState>, private notification: NotificationBarService, private sound: SoundService) {
+    sound.load(['card.wav', 'success.flac', 'win.wav'])
     this.columns = GameComponent.getColumns(window.innerWidth)
     this.subscription = new Subscription()
     this.flippingDisabled = false
@@ -77,6 +78,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private onMatchJustFlippedCard() {
+    this.timeForRemember = false
     setTimeout(() => this.sound.play('success.flac'), 333)
 
     if (this.matched.every(i => i)) {
@@ -85,25 +87,23 @@ export class GameComponent implements OnInit, OnDestroy {
         this.notification.showSuccess('All pairs matched!', 2600)
       }, 600)
     } else {
-      this.timeForRemember = false
       setTimeout(() => {
-        clearTimeout(this.delayTimeout)
+        clearTimeout(this.delayTimeoutId)
         this.store.dispatch(nextMove())
       }, 500)
     }
   }
 
   ngOnInit(): void {
-    this.sound.load(['card.wav', 'success.flac', 'win.wav'])
-
     this.subscription.add(
       this.justFlippedCardIdx$.subscribe(justFlippedCardIdx => {
         if (justFlippedCardIdx.length === 2) {
           this.flippingDisabled = true
           this.timeForRemember = true
-          this.delayTimeout = setTimeout(() => {
+          this.delayTimeoutId = setTimeout(() => {
             this.store.dispatch(nextMove())
             this.timeForRemember = false
+            this.sound.play('card.wav')
           }, MOVE_DELAY)
         } else {
           this.flippingDisabled = false
