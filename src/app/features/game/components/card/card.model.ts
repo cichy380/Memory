@@ -36,9 +36,6 @@ export enum CardColors {
   'indigo',
   'blue',
   'cyan',
-  'teal',
   'green',
-  'amber',
   'orange',
-  'brown',
 }
