@@ -43,6 +43,10 @@ export class SinglePlayerGameService {
 
       if (this.justFlippedIdx.length === 2 && this.compareJustFlippedCards()) {
         this.setJustFlippedAsMatched()
+
+        if (this.matched.every(i => i)) {
+          this.justFlippedIdx = []
+        }
       }
     }
 
