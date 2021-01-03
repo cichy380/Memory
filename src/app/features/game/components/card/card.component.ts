@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Card } from './card.model'
 import { SoundService } from '../../services/sound.service'
 
@@ -7,6 +7,7 @@ import { SoundService } from '../../services/sound.service'
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
   public isDisabled: boolean
