@@ -79,6 +79,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   private onMatchJustFlippedCard() {
     this.showTimer = false
+    clearTimeout(this.delayTimeoutId)
     setTimeout(() => this.sound.play('success.flac'), 333)
 
     if (this.matched.every(i => i)) {
@@ -87,10 +88,7 @@ export class GameComponent implements OnInit, OnDestroy {
         this.notification.showSuccess('All pairs matched!', 2600)
       }, 600)
     } else {
-      setTimeout(() => {
-        clearTimeout(this.delayTimeoutId)
-        this.store.dispatch(nextMove())
-      }, 500)
+      setTimeout(() => this.store.dispatch(nextMove()), 500)
     }
   }
 
