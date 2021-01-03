@@ -38,9 +38,9 @@ export class GameComponent implements OnInit, OnDestroy {
   public matchedPairs: number
   public flippingDisabled: boolean
   public moveDelay = MOVE_DELAY // ms
-  public timeForRemember: boolean
+  public showTimer: boolean
   public gameOver: boolean
-  private justFlippedCardIdx$: Observable<number[]>
+  public justFlippedCardIdx$: Observable<number[]>
   private subscription: Subscription
   private delayTimeoutId: number
 
@@ -78,7 +78,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private onMatchJustFlippedCard() {
-    this.timeForRemember = false
+    this.showTimer = false
     setTimeout(() => this.sound.play('success.flac'), 333)
 
     if (this.matched.every(i => i)) {
@@ -99,10 +99,10 @@ export class GameComponent implements OnInit, OnDestroy {
       this.justFlippedCardIdx$.subscribe(justFlippedCardIdx => {
         if (justFlippedCardIdx.length === 2) {
           this.flippingDisabled = true
-          this.timeForRemember = true
+          this.showTimer = true
           this.delayTimeoutId = setTimeout(() => {
             this.store.dispatch(nextMove())
-            this.timeForRemember = false
+            this.showTimer = false
             this.sound.play('card.wav')
           }, MOVE_DELAY)
         } else {
@@ -123,6 +123,13 @@ export class GameComponent implements OnInit, OnDestroy {
         }
       }),
     )
+  }
+
+  public removeMoveDelay(): void {
+    clearTimeout(this.delayTimeoutId)
+    this.store.dispatch(nextMove())
+    this.showTimer = false
+    this.sound.play('card.wav')
   }
 
   ngOnDestroy(): void {

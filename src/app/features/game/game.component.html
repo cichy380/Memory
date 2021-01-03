@@ -2,14 +2,16 @@
   <app-page-header>
     <app-page-header-back [link]="'/'" ariaLabel="Back to homepage"></app-page-header-back>
     <app-game-heading [move]="(move$ | async)" [matched]="matchedPairs" [cards]="deck.length"></app-game-heading>
-    <app-pie-timer *ngIf="timeForRemember" [time]="moveDelay"></app-pie-timer>
+    <app-pie-timer *ngIf="showTimer" [time]="moveDelay"></app-pie-timer>
   </app-page-header>
 
   <div class="page-content game-content">
-    <div class="container">
+    <div class="container position-relative">
+      <div class="cover game-cover" *ngIf="flippingDisabled" (click)="removeMoveDelay()"></div>
       <mat-grid-list [cols]="columns" rowHeight="1:1.2" gutterSize="16px" (window:resize)="onResize($event)"
                      [@listAnimation]="deck.length">
-        <mat-grid-tile class="overflow-visible" *ngFor="let card of deck; let cardIdx = index">
+        <mat-grid-tile class="game__tile" *ngFor="let card of deck; let cardIdx = index"
+                       [ngClass]="{'game__tile_out-of-the-game': flippingDisabled && !(justFlippedCardIdx$ | async).includes(cardIdx)}">
           <app-card [card]="card" [flipped]="flipped[cardIdx]"
                     [ngClass]="{'game__card-matched': matched[cardIdx]}"
                     [disabled]="flippingDisabled"

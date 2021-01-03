@@ -144,6 +144,18 @@
   overflow: visible !important;
 }
 
+.position-relative {
+  position: relative !important;
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
 @each $name, $color in $card-colors {
   .card-color_#{$name} {
     color: $color !important;
