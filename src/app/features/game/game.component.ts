@@ -40,7 +40,7 @@ export class GameComponent implements OnInit, OnDestroy {
   public moveDelay = MOVE_DELAY // ms
   public showTimer: boolean
   public gameOver: boolean
-  public justFlippedCardIdx$: Observable<number[]>
+  private justFlippedCardIdx$: Observable<number[]>
   private subscription: Subscription
   private delayTimeoutId: number
 

@@ -14,15 +14,6 @@
   animation: ScaleAnimation .5s ease .3s;
 }
 
-.game__tile {
-  transition: filter .3s;
-  overflow: visible;
-}
-
-.game__tile_out-of-the-game {
-  filter: blur(2px);
-}
-
 .game-cover {
   z-index: 1050;
 }
